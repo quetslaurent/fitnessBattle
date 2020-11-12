@@ -1,0 +1,26 @@
+<div class="signin-box">
+  <h2>FitnessBattle</h2>
+  <form [formGroup]="formSignIn" (ngSubmit)="signIn()">
+    <div class="user-box">
+      <input type="email" formControlName="email">
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="text" formControlName="username">
+      <label>UserName</label>
+    </div>
+    <div class="user-box">
+      <input type="password" formControlName="password">
+      <label>Password</label>
+    </div>
+    <button type="submit" id="signInBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Sign in
+    </button>
+  </form>
+  <a id="YetSub" routerLink="/logIn" routerLinkActive="active">Already subscribed?</a>
+</div>
+

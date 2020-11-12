@@ -1,0 +1,167 @@
+
+section{
+  position: relative;
+  padding: 75px 100px;
+}
+section h2
+{
+  position: relative;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-family: 'Chapaza';
+}
+#sec2{
+  position: relative;
+  margin-top: 6%;
+  width: 100%;
+  height: 100vh;
+  color:white;
+  background-image: url(../../../assets/images/background.jpg);
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: top left;
+  transform: skewY(3deg);
+}
+#sec2 h2{
+  letter-spacing: 8px;
+}
+.discord{
+  text-align: center;
+  position: relative;
+  margin-top:1%;
+  padding-top: 4%;
+  opacity: 90%;
+  transform: skewY(-3deg);
+}
+
+#discJoin {
+  text-align: center;
+  position: relative;
+  display: flex;
+  color: white;
+}
+#discJoin .icon:hover{
+  text-decoration: none!important;
+  color: #7289da;
+}
+#disc a{
+  text-align: center;
+  padding-left: 40%;
+  padding-top: 10%;
+
+}
+#disc a:hover{
+  text-decoration: none!important;
+}
+
+#sec3{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  color:black;
+  background-color:white ;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sec3 h2{
+  text-align: center;
+  margin-bottom: 8%;
+  font-family: 'Chapaza';
+  letter-spacing: 8px;
+}
+
+#sec3 h3{
+  text-align: center;
+  margin-bottom: 8%;
+}
+
+#zonePartenaires{
+  justify-content: space-around;
+  display: flex;
+  transform: skewY(-4deg);
+}
+.partenaire{
+  width: 30%;
+  height: 10%;
+}
+
+#sec4{
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  color:black;
+  background-color:#708090 ;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: top left;
+  transform: skewY(4deg);
+}
+#sec4 h2{
+  margin-top: 2%;
+  text-align: center;
+  transform:  skewY(-4deg);
+  color: white;
+  letter-spacing: 8px;
+}
+
+
+/*discord button en bas a droite*/
+#bas .floating-btn {
+  color: white;
+  background-color: #7289da!important;
+  border-color: #7289da!important;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 2.6rem!important;
+  width: 5.2rem;
+  height: 5.2rem;
+  border-radius: 5.2rem 5.2rem!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: width 0.5s;
+}
+#bas .floating-btn .expanded {
+  opacity: 0;
+  color: #7289da;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 0px;
+  transition: opacity 0.5s;
+}
+#bas .floating-btn:hover {
+  width: 26rem;
+  transition: width 0.5s;
+}
+#bas .floating-btn:hover .icon {
+  opacity: 0;
+}
+#bas .floating-btn:hover .expanded {
+  opacity: 1;
+  color: white;
+  font-size: 24px;
+  transition: opacity 0.5s;
+}
+#bas .floating-btn .icon {
+  color: white;
+}
+/*FIN discord button*/

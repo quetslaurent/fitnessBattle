@@ -1,0 +1,13 @@
+#nav{
+  z-index: 1;
+  position: fixed;
+  opacity: 70%;
+  top:0;
+  width: 100%;
+  font-family: 'Chapaza';
+  letter-spacing: 2px;
+}
+.nav-link:hover{
+  color: black!important;
+  opacity: 1!important;
+}

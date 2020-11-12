@@ -1,0 +1,22 @@
+<div class="login-box">
+  <h2>FitnessBattle</h2>
+  <form  [formGroup]="formLogIn" (ngSubmit)="logIn()">
+    <div class="user-box">
+      <input type="email" formControlName="email">
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" formControlName="password">
+      <label>Password</label>
+    </div>
+    <button type="submit" id="logInBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Log in
+    </button>
+  </form>
+  <a id="notYetSub" routerLink="/signIn" routerLinkActive="active">Not yet subscribed?</a>
+</div>
+
