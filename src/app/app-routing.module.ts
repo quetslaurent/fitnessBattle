@@ -11,7 +11,10 @@ import {HomeComponent} from './commons/home/home.component';
 
 const routes : Routes = [
   {
-    path:'',component:LogInComponent
+    path:"home",component:HomeComponent
+  },
+  {
+    path:'',redirectTo:"/home",pathMatch:"full"
   },
   {
     path: '**',component: NotFoundComponent
@@ -34,6 +37,7 @@ export class AppRoutingModule {
     ProfileComponent,
     LogInComponent,
     SignInComponent,
+    ProfileComponent,
     NavComponent,
     FooterComponent,
     HomeComponent,

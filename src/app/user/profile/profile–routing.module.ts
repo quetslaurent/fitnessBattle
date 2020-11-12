@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LogInComponent} from '../log-in/log-in.component';
-import {SignInComponent} from './sign-in.component';
+import {ProfileComponent} from './profile.component';
 
 const routes: Routes = [
   {
-    path:'home/signIn',component:SignInComponent
+    path:'profile',component:ProfileComponent
   }
 ];
 
@@ -17,8 +16,9 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class SignInRoutingModule {
+
+export class ProfileRoutingModule {
   static components = [
-    SignInComponent
+    ProfileComponent
   ];
 }
