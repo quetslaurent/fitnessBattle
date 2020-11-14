@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from './commons/not-found/not-found.component';
 import {AppComponent} from './app.component';
-import {NavComponent} from './commons/nav/nav.component';
 import {FooterComponent} from './commons/footer/footer.component';
 import {ConnectionComponent} from './connection/connection.component';
-import {MainComponent} from "./main/main.component";
-import {ProfileComponent} from "./main/profile/profile.component";
 
 const routes : Routes = [
   {
