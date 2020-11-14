@@ -1,0 +1,75 @@
+<div id="site">
+  <!-- logo -->
+  <div class="banner" id="banner">
+
+  <!------------LOGIN------------>
+    <div class="login-box">
+      <h2>FitnessBattle</h2>
+      <form  [formGroup]="formLogIn" (ngSubmit)="logIn()">
+        <div class="user-box">
+          <input type="email" formControlName="email">
+          <label>Email</label>
+        </div>
+        <div class="user-box">
+          <input type="password" formControlName="password">
+          <label>Password</label>
+        </div>
+        <button type="submit" id="logInBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Log in
+        </button>
+      </form>
+      <a id="notYetSub" routerLink="/signIn" routerLinkActive="active">Not yet subscribed?</a>
+    </div>
+    <!------------END-LOGIN------------>
+
+    <!------------SIGNIN------------>
+
+    <div class="signin-box">
+      <h2>FitnessBattle</h2>
+      <form [formGroup]="formSignIn" (ngSubmit)="signIn()">
+        <div class="user-box">
+          <input type="email" formControlName="email">
+          <label>Email</label>
+        </div>
+        <div class="user-box">
+          <input type="text" formControlName="username">
+          <label>UserName</label>
+        </div>
+        <div class="user-box">
+          <input type="password" formControlName="password">
+          <label>Password</label>
+        </div>
+        <button type="submit" id="signInBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Sign in
+        </button>
+      </form>
+      <a id="YetSub" routerLink="/logIn" routerLinkActive="active">Already subscribed?</a>
+    </div>
+
+
+    <!------------END-SIGNIN------------>
+
+    <div class="clouds" clouds>
+      <img src="../../assets/images/cloud1.png" style="--i:1;">
+      <img src="../../assets/images/cloud2.png" style="--i:2;">
+      <img src="../../assets/images/cloud3.png" style="--i:3;">
+      <img src="../../assets/images/cloud4.png" style="--i:4;">
+      <img src="../../assets/images/cloud5.png" style="--i:5;">
+      <img src="../../assets/images/cloud1.png" style="--i:10;">
+      <img src="../../assets/images/cloud2.png" style="--i:9;">
+      <img src="../../assets/images/cloud3.png" style="--i:8;">
+      <img src="../../assets/images/cloud4.png" style="--i:7;">
+      <img src="../../assets/images/cloud5.png" style="--i:6;">
+
+    </div>
+  </div>
+</div>
+
