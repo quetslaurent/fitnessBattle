@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from './commons/not-found/not-found.component';
 import {AppComponent} from './app.component';
-import {ProfileComponent} from './user/profile/profile.component';
-import {LogInComponent} from './connection/log-in/log-in.component';
-import {SignInComponent} from './connection/sign-in/sign-in.component';
 import {NavComponent} from './commons/nav/nav.component';
 import {FooterComponent} from './commons/footer/footer.component';
-import {HomeComponent} from './commons/home/home.component';
+import {ConnectionComponent} from './connection/connection.component';
 
 const routes : Routes = [
   {
-    path:"home",component:HomeComponent
+    path:"connection",component:ConnectionComponent
   },
   {
-    path:'',redirectTo:"/home",pathMatch:"full"
+    //on redirige vers connection si on mets rien apres le / , et le full est la pour check toute l'url
+    path:'',redirectTo:"/connection",pathMatch:"full"
   },
   {
+    //error 404 quand on tape n'importe quoi
+    //l'ordre des routes a une importance , il faut le 404 a la fin sinon on aura toujours 404
     path: '**',component: NotFoundComponent
   }
 ];
@@ -34,13 +34,8 @@ export class AppRoutingModule {
   //declarations qui viennet de app module ts
   static components = [
     AppComponent,
-    ProfileComponent,
-    LogInComponent,
-    SignInComponent,
-    ProfileComponent,
     NavComponent,
     FooterComponent,
-    HomeComponent,
     NotFoundComponent
   ];
 }
