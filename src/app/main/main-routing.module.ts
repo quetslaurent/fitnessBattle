@@ -4,6 +4,7 @@ import {MainComponent} from "./main.component";
 import {StatsComponent} from "./stats/stats.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {NavComponent} from "../commons/nav/nav.component";
+import {AboutUsComponent} from './about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       },
       {
         path: 'stats', component: StatsComponent,
+        canActivate: []
+      },
+      {
+        path: 'aboutUs', component: AboutUsComponent,
         canActivate: []
       },
     ]
@@ -30,6 +35,7 @@ export class MainRoutingModule {
     MainComponent,
     StatsComponent,
     ProfileComponent,
+    AboutUsComponent,
     NavComponent
   ];
 }
