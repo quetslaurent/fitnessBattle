@@ -16,6 +16,7 @@ export class ConnectionComponent implements OnInit {
     username:['',Validators.required],
     password:['',Validators.required]
   });
+  isVisible: boolean = true;
 
   constructor(public fb:FormBuilder) { }
 
@@ -29,4 +30,7 @@ export class ConnectionComponent implements OnInit {
 
   }
 
+  changeVisible() {
+    this.isVisible = !this.isVisible;
+  }
 }

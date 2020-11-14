@@ -3,7 +3,7 @@
   <div class="banner" id="banner">
 
   <!------------LOGIN------------>
-    <div class="login-box">
+    <div class="login-box" *ngIf="isVisible">
       <h2>FitnessBattle</h2>
       <form  [formGroup]="formLogIn" (ngSubmit)="logIn()">
         <div class="user-box">
@@ -22,13 +22,13 @@
           Log in
         </button>
       </form>
-      <a id="notYetSub" routerLink="/signIn" routerLinkActive="active">Not yet subscribed?</a>
+      <a id="notYetSub" (click)="changeVisible()">Not yet subscribed?</a>
     </div>
     <!------------END-LOGIN------------>
 
     <!------------SIGNIN------------>
 
-    <div class="signin-box">
+    <div class="signin-box" *ngIf="!isVisible">
       <h2>FitnessBattle</h2>
       <form [formGroup]="formSignIn" (ngSubmit)="signIn()">
         <div class="user-box">
@@ -51,7 +51,7 @@
           Sign in
         </button>
       </form>
-      <a id="YetSub" routerLink="/logIn" routerLinkActive="active">Already subscribed?</a>
+      <a id="YetSub" (click)="changeVisible()">Already subscribed?</a>
     </div>
 
 
