@@ -10,6 +10,7 @@
   background-size: cover;
 
 }
+
 .banner #logo{
   position: relative;
   width: 560px;
@@ -51,36 +52,33 @@
   }
 }
 
-
 /*LOGIN*/
 
-.login-box {
+.box {
   z-index: 1;
-  position: relative;
-  margin-top: 10%;
-  left: 50%;
+  position: absolute;
+  margin-top: -5%;
   width: 400px;
   padding: 40px 40px 10px 40px;
   text-align: center;
-  transform: translate(-50%, -50%);
   background: rgba(0,0,0,.5);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
 }
 
-.login-box h2 {
+.box h2 {
   margin: 0 0 30px;
   padding: 0;
   color: #fff;
   text-align: center;
 }
 
-.login-box .user-box {
+.box .user-box {
   position: relative;
 }
 
-.login-box .user-box input {
+.box .user-box input {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -91,7 +89,7 @@
   outline: none;
   background: transparent;
 }
-.login-box .user-box label {
+.box .user-box label {
   position: absolute;
   top:0;
   left: 0;
@@ -102,15 +100,15 @@
   transition: .5s;
 }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box .ng-dirty ~ label {
+.box .user-box input:focus ~ label,
+.box .user-box .ng-dirty ~ label {
   top: -20px;
   left: 0;
   color:#33ce57;
   font-size: 12px;
 }
 
-.login-box form #logInBtn {
+.box form #logInBtn {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -126,7 +124,7 @@
   border-style: none;
 }
 
-.login-box .ng-valid #logInBtn:hover {
+.box .ng-valid #logInBtn:hover {
   background: #33ce57;
   color: #fff;
   border-radius: 5px;
@@ -137,18 +135,18 @@
   cursor: pointer;
 }
 
-.login-box a span {
+.box a span {
   position: absolute;
   display: block;
 }
 
-.login-box button span {
+.box button span {
   position: absolute;
   display: block;
 }
 
 /*Span animation*/
-.login-box #logInBtn span:nth-child(1) {
+.box #logInBtn span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -166,7 +164,7 @@
   }
 }
 
-.login-box #logInBtn span:nth-child(2) {
+.box #logInBtn span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -185,7 +183,7 @@
   }
 }
 
-.login-box #logInBtn span:nth-child(3) {
+.box #logInBtn span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -204,7 +202,7 @@
   }
 }
 
-.login-box #logInBtn span:nth-child(4) {
+.box #logInBtn span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
@@ -231,71 +229,14 @@
 
 #notYetSub:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 
 /*END LOGIN*/
 
 /*SIGN IN*/
 
-
-.signin-box {
-  z-index: 1;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  padding: 40px 40px 10px 40px;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,.5);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
-  margin-top: 20%;
-}
-
-.signin-box h2 {
-  margin: 0 0 30px;
-  padding: 0;
-  color: #fff;
-  text-align: center;
-}
-
-.signin-box .user-box {
-  position: relative;
-}
-
-.signin-box .user-box input {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
-}
-.signin-box .user-box label {
-  position: absolute;
-  top:0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  pointer-events: none;
-  transition: .5s;
-}
-
-.signin-box .user-box input:focus ~ label,
-.signin-box .user-box .ng-dirty ~ label {
-  top: -20px;
-  left: 0;
-  color:#33ce57;
-  font-size: 12px;
-}
-
-.signin-box form #signInBtn {
+.box form #signInBtn {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -311,7 +252,7 @@
   border-style: none;
 }
 
-.signin-box .ng-valid #signInBtn:hover {
+.box .ng-valid #signInBtn:hover {
   background: #33ce57;
   color: #fff;
   border-radius: 5px;
@@ -322,17 +263,7 @@
   cursor: pointer;
 }
 
-.signin-box a span {
-  position: absolute;
-  display: block;
-}
-
-.signin-box button span {
-  position: absolute;
-  display: block;
-}
-
-.signin-box #signInBtn span:nth-child(1) {
+.box #signInBtn span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -341,16 +272,7 @@
   animation: btn-anim1 1s linear infinite;
 }
 
-@keyframes btn-anim1 {
-  0% {
-    left: -100%;
-  }
-  50%,100% {
-    left: 100%;
-  }
-}
-
-.signin-box #signInBtn span:nth-child(2) {
+.box #signInBtn span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -360,16 +282,7 @@
   animation-delay: .25s
 }
 
-@keyframes btn-anim2 {
-  0% {
-    top: -100%;
-  }
-  50%,100% {
-    top: 100%;
-  }
-}
-
-.signin-box #signInBtn span:nth-child(3) {
+.box #signInBtn span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -379,16 +292,8 @@
   animation-delay: .5s
 }
 
-@keyframes btn-anim3 {
-  0% {
-    right: -100%;
-  }
-  50%,100% {
-    right: 100%;
-  }
-}
 
-.signin-box #signInBtn span:nth-child(4) {
+.box #signInBtn span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
@@ -396,21 +301,6 @@
   background: linear-gradient(360deg, transparent, #33ce57);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
-}
-
-@keyframes btn-anim4 {
-  0% {
-    bottom: -100%;
-  }
-  50%,100% {
-    bottom: 100%;
-  }
-}
-
-p{
-  color: white;
-  opacity: 50%;
-  padding-top: 5px;
 }
 
 #YetSub{
@@ -421,7 +311,7 @@ p{
 
 #YetSub:hover {
   text-decoration: none;
+  cursor: pointer;
 }
-
 
 /*END SIGN IN*/
