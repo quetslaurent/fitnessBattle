@@ -17,7 +17,6 @@ import {MainModule} from "./main/main.module";
   ],
   providers: [],
   exports: [
-
   ],
   bootstrap: [AppComponent]
 })

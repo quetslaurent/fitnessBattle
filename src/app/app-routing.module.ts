@@ -36,7 +36,6 @@ export class AppRoutingModule {
   //declarations qui viennet de app module ts
   static components = [
     AppComponent,
-    NavComponent,
     FooterComponent,
     NotFoundComponent
   ];

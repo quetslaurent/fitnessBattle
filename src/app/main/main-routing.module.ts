@@ -3,10 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import {MainComponent} from "./main.component";
 import {StatsComponent} from "./stats/stats.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {NavComponent} from "../commons/nav/nav.component";
 
 const routes: Routes = [
   {
-    path:'main',component:MainComponent
+    path:'main',component:MainComponent,
+    children: [
+      {
+        path: 'profile', component: ProfileComponent,
+        canActivate: []
+      },
+      {
+        path: 'stats', component: StatsComponent,
+        canActivate: []
+      },
+    ]
   }
 ];
 
@@ -18,6 +29,7 @@ export class MainRoutingModule {
   static components = [
     MainComponent,
     StatsComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavComponent
   ];
 }
