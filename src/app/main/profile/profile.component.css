@@ -52,6 +52,16 @@ body{
   box-shadow: none!important;
 }
 
+.list-group span {
+  font-size: medium;
+}
+
+
+.list-group button{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
 
 /**BUTTONS*/
 #addActivityBtn {
