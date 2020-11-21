@@ -5,6 +5,7 @@ import {StatsComponent} from "./stats/stats.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {NavComponent} from "../commons/nav/nav.component";
 import {AboutUsComponent} from './about-us/about-us.component';
+import {RankingComponent} from "./ranking/ranking.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
         path: 'aboutUs', component: AboutUsComponent,
         canActivate: []
       },
+      {
+        path: 'ranking', component: RankingComponent,
+        canActivate: []
+      },
     ]
   }
 ];
@@ -36,6 +41,7 @@ export class MainRoutingModule {
     StatsComponent,
     ProfileComponent,
     AboutUsComponent,
+    RankingComponent,
     NavComponent
   ];
 }

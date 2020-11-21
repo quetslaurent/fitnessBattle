@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Activity} from "./activity";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivityType} from "./activityType";
 
 @Component({
   selector: 'app-profile',
@@ -43,7 +45,62 @@ export class ProfileComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  activityTypes: ActivityType[] = [
+    {
+      name:"Cardio",
+      activities :[
+        {
+          name :"Swimming",
+          rep : 12
+        },
+        {
+          name :"Running",
+          rep : 17
+        },
+        {
+          name :"Walking",
+          rep : 3
+        },
+        {
+          name :"Push up",
+          rep : 36
+        }
+      ]
+    },
+    {
+      name:"Upper Body",
+      activities :[
+        {
+          name :"Twist curl",
+          rep : 1
+        },
+        {
+          name :"Free wheight",
+          rep : 34
+        },
+        {
+          name :"SOme exercices",
+          rep : 3
+        },
+        {
+          name :"POMPELUP",
+          rep : 99
+        }
+      ]
+    }
+  ];
+
+  formIMC:FormGroup = this.fb.group({
+    wheight:['',Validators.required],
+    height:['',Validators.required]
+  });
+
+  IMC: number = 0;
+  IMCColor = "blue";
+  IMCQuote:string;
+  isIMCVisible:boolean=false;
+
+  constructor(public fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -79,5 +136,29 @@ export class ProfileComponent implements OnInit {
         }
       }
     }
+  }
+
+  processIMC() {
+
+
+    this.IMC = Math.round(this.formIMC.value.wheight / (Math.pow(this.formIMC.value.height/100,2))*100)/100;
+    this.isIMCVisible=true;
+
+    if (this.IMC >= 18.5 && this.IMC<=25) {
+      this.IMCColor = "lime";
+      this.IMCQuote = "Vous êtes en parfaite santé"
+
+    }
+    else if (this.IMC>25 && this.IMC<=35) {
+      this.IMCColor = "orange";
+      this.IMCQuote = "Il serait temps de gagner quelques points"
+
+    }
+    else {
+      this.IMCColor = "red";
+      this.IMCQuote = "Il est grand temps de vous remettre au sport"
+
+    }
+
   }
 }
