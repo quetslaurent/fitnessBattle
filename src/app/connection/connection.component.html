@@ -30,7 +30,7 @@
 
     <div class="box" *ngIf="!isVisible">
       <h2>FitnessBattle</h2>
-      <form [formGroup]="formSignIn" (ngSubmit)="signIn()">
+      <form [formGroup]="formSignIn" (ngSubmit)="postUser($event)">
         <div class="user-box">
           <input type="email" formControlName="email">
           <label>Email</label>
