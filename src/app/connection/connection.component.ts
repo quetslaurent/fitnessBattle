@@ -51,9 +51,9 @@ export class ConnectionComponent implements OnInit {
 
   /*signIn(){
     this.userCreated.emit(this.formSignIn.value);
-  }
+  }*/
 
   changeVisible() {
     this.isVisible = !this.isVisible;
-  }*/
+  }
 }

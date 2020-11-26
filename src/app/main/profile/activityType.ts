@@ -1,4 +1,4 @@
-import {Activity} from '../../modele/activities/activity';
+import {Activity} from '../../modele/activities/types/activity';
 
 export interface ActivityType {
   name:string,

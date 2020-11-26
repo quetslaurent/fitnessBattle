@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivityType} from "./activityType";
-import {Activity} from '../../modele/activities/activity';
+import {Activities, Activity} from '../../modele/activities/types/activity';
+import {ActivitiesApiService} from '../../modele/activities/repositories/activities-api.service';
+import {Category} from '../../modele/categories/category';
 
 @Component({
   selector: 'app-profile',
@@ -11,85 +12,15 @@ import {Activity} from '../../modele/activities/activity';
 export class ProfileComponent implements OnInit {
   isAddActivity: boolean = false;
 
-  activitiesBookmarked: Activity[];/* = [
-      {
-        name :"Swimming",
-        repetitions : 13
-      },
-      {
-        name :"Running",
-        rep : 24
-      },
-      {
-        name :"Walking",
-        rep : 6
-      }
-    ];
+  activitiesBookmarked: Activity[];
 
-  activitiesAvailable: Activity[] = [
-    {
-      name :"Swimming",
-      rep : 0
-    },
-    {
-      name :"Running",
-      rep : 0
-    },
-    {
-      name :"Walking",
-      rep : 0
-    },
-    {
-      name :"Push up",
-      rep : 0
-    }
-  ];*/
+  activitiesAvailable: Activity[];
 
-  activityTypes: ActivityType[];/* = [
-    {
-      name:"Cardio",
-      activities :[
-        {
-          name :"Swimming",
-          rep : 12
-        },
-        {
-          name :"Running",
-          rep : 17
-        },
-        {
-          name :"Walking",
-          rep : 3
-        },
-        {
-          name :"Push up",
-          rep : 36
-        }
-      ]
-    },
-    {
-      name:"Upper Body",
-      activities :[
-        {
-          name :"Twist curl",
-          rep : 1
-        },
-        {
-          name :"Free wheight",
-          rep : 34
-        },
-        {
-          name :"SOme exercices",
-          rep : 3
-        },
-        {
-          name :"POMPELUP",
-          rep : 99
-        }
-      ]
-    }
-  ];
-*/
+  activities: Activities = [];
+
+  categories: Category[];
+
+
   formIMC:FormGroup = this.fb.group({
     wheight:['',Validators.required],
     height:['',Validators.required]
@@ -100,10 +31,21 @@ export class ProfileComponent implements OnInit {
   IMCQuote:string;
   isIMCVisible:boolean=false;
 
-  constructor(public fb:FormBuilder) { }
+  constructor(public fb:FormBuilder,private activityService : ActivitiesApiService) { }
 
   ngOnInit(): void {
+    this.getActivities(1);
   }
+
+
+  private getActivities(id:number) {
+    this.activityService.getByCategoryId(id)
+      .subscribe(activities => this.activities=activities);
+    console.log(this.activities);
+  }
+
+
+
   changeAddActivityView() {
     this.isAddActivity = !this.isAddActivity;
   }

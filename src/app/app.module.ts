@@ -5,15 +5,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {ConnectionModule} from "./connection/connection.module";
 import {MainModule} from "./main/main.module";
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [AppRoutingModule.components],
   imports: [
     BrowserModule,
-    HttpClientModule,
     ReactiveFormsModule,
     ConnectionModule,
+    HttpClientModule,
     MainModule,
     AppRoutingModule
   ],

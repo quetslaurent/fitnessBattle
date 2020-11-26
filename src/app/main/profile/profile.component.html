@@ -83,14 +83,14 @@
 
 <!-----------------------HOW-MANY-POINTS-PER-ACTIVITY--------------->
         <div class="row gutters-sm">
-          <div class="col-sm-6 mb-3" *ngFor="let actT of activityTypes">
+          <div class="col-sm-6 mb-3" *ngFor="let act of activities">
             <div class="card h-100">
               <div class="card-body">
-                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-success mr-2">{{actT.name}}</i></h6>
-                <span *ngFor="let act of actT.activities">
-                  <small>{{act.name}}</small>
+                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-success mr-2">{{act.name}}</i></h6>
+                <span *ngFor="let act of activities">
+                  <small>{{act.name}} {{act.repetitions}} in <!--{{act.unit.type}}--></small>
                   <div class="progress mb-3" style="height: 5px">
-                    <div class="progress-bar  bg-success" role="progressbar" style="width: 80%" aria-valuenow="{{act.rep}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar  bg-success" role="progressbar" [ngStyle]="{width:act.repetitions+'%'}" attr.aria-valuenow='{{act.repetitions}}' aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </span>
               </div>
