@@ -1,5 +1,5 @@
-import {Unit} from '../units/unit';
 import {Category} from '../categories/category';
+import {Unit} from '../units/unit';
 
 export interface Activity{
 

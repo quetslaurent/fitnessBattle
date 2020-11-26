@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Activity} from "./activity";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivityType} from "./activityType";
+import {Activity} from '../../modele/activities/activity';
 
 @Component({
   selector: 'app-profile',
@@ -11,10 +11,10 @@ import {ActivityType} from "./activityType";
 export class ProfileComponent implements OnInit {
   isAddActivity: boolean = false;
 
-  activitiesBookmarked: Activity[] = [
+  activitiesBookmarked: Activity[];/* = [
       {
         name :"Swimming",
-        rep : 13
+        repetitions : 13
       },
       {
         name :"Running",
@@ -43,9 +43,9 @@ export class ProfileComponent implements OnInit {
       name :"Push up",
       rep : 0
     }
-  ];
+  ];*/
 
-  activityTypes: ActivityType[] = [
+  activityTypes: ActivityType[];/* = [
     {
       name:"Cardio",
       activities :[
@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
       ]
     }
   ];
-
+*/
   formIMC:FormGroup = this.fb.group({
     wheight:['',Validators.required],
     height:['',Validators.required]
@@ -104,18 +104,22 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   changeAddActivityView() {
     this.isAddActivity = !this.isAddActivity;
   }
 
   decrease(act: Activity) {
+    /*
     if(act.rep>0)
       act.rep--;
+      */
+
   }
 
   increase(act: Activity) {
+    /*
     act.rep++;
+    */
   }
 
   bookmark(act: Activity) {

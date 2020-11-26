@@ -1,4 +1,4 @@
-import {User} from '../users/user';
+import {User} from '../users/types/user';
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export interface TrainingDate{
