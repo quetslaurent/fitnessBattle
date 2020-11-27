@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs';
-import {TrainingDate, TrainingDates} from './trainingDate';
+import {TrainingDate, TrainingDates} from './types/trainingDate';
 
 export interface TrainingDatesRepository {
   query() : Observable<TrainingDates>;

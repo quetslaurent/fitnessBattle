@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs';
-import {Training, Trainings} from '../units/training';
+import {Training, Trainings} from '../types/training';
 
 
 export interface TrainingsRepository {

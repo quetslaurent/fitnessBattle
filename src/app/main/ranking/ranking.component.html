@@ -3,12 +3,12 @@
 
     <div class="row gutters-sm">
 
-      <!-------------------------PROFILE---------------------------------->
-      <h1>zzz : {{points}}</h1>
+      <!-------------------------RANKING---------------------------------->
+
       <div class="col-md-4 mb-3" *ngFor="let user of users">
         <div class="card">
           <div class="card-body">
-           {{user.name}} <!--{{user.points}}-->
+           {{user.name}} : {{user.points.toFixed(2)}} Points
           </div>
         </div>
       </div>

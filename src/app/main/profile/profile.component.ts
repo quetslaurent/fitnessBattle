@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Activities, Activity} from '../../modele/activities/types/activity';
-import {ActivitiesApiService} from '../../modele/activities/repositories/activities-api.service';
-import {Category} from '../../modele/categories/category';
+import {Activity} from '../../modele/activities/types/activity';
+import {CategoriesApiService} from '../../modele/categories/repositories/categories-api.service';
+import {ActivitiesByCategories} from '../../modele/categories/types/ActivitiesByCategory';
 
 @Component({
   selector: 'app-profile',
@@ -16,9 +16,7 @@ export class ProfileComponent implements OnInit {
 
   activitiesAvailable: Activity[];
 
-  activities: Activities = [];
-
-  categories: Category[];
+  activitiesByCategories: ActivitiesByCategories;
 
 
   formIMC:FormGroup = this.fb.group({
@@ -31,17 +29,15 @@ export class ProfileComponent implements OnInit {
   IMCQuote:string;
   isIMCVisible:boolean=false;
 
-  constructor(public fb:FormBuilder,private activityService : ActivitiesApiService) { }
+  constructor(public fb:FormBuilder,private categoryService : CategoriesApiService) { }
 
   ngOnInit(): void {
-    this.getActivities(1);
+    this.getCategories();
   }
 
-
-  private getActivities(id:number) {
-    this.activityService.getByCategoryId(id)
-      .subscribe(activities => this.activities=activities);
-    console.log(this.activities);
+  private getCategories(){
+    this.categoryService.getActivitiesByCategory()
+      .subscribe(activitiesByCategories => this.activitiesByCategories=activitiesByCategories);
   }
 
 
@@ -53,15 +49,13 @@ export class ProfileComponent implements OnInit {
   decrease(act: Activity) {
     /*
     if(act.rep>0)
-      act.rep--;
-      */
-
+      act.rep--;*/
   }
 
   increase(act: Activity) {
-    /*
-    act.rep++;
-    */
+
+    //act.rep++;
+
   }
 
   bookmark(act: Activity) {

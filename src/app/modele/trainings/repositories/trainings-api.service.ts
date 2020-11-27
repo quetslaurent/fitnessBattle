@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {TrainingsRepository} from './trainings-repository';
-import {Training, Trainings} from '../units/training';
+import {Training, Trainings} from '../types/training';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';

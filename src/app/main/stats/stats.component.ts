@@ -1,7 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import {TrainingsApiService} from '../../modele/trainings/repositories/trainings-api.service';
+import {Trainings} from '../../modele/trainings/types/training';
 
 @Component({
   selector: 'app-stats',
@@ -10,28 +11,19 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 })
 export class StatsComponent implements OnInit {
 
-  constructor() { }
-
   private chart: am4charts.XYChart;
+  trainings : Trainings;
+
+  constructor(private trainingService : TrainingsApiService) { }
 
   ngOnInit(): void {
+    this.getTrainings();
+  }
+
+  private setGraph(){
     //emplacement du graphique
     let chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.paddingRight = 20;
-
-    //données
-    let data = [];
-    let visits = 10;
-
-    //pour mettre des trucs randoms dans les données
-    for (let i = 1; i < 366; i++) {
-      //on fait 366 jours avec des trucs randoms
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-    }
-
-    //on envoie les données dans le graphique
-    chart.data = data;
 
     //on construit l'axe des abscisses avec les dates
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
@@ -40,7 +32,7 @@ export class StatsComponent implements OnInit {
     //axe des ordonnés avec le nombre de visites
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
-    valueAxis.renderer.minWidth = 35;
+    valueAxis.renderer.minWidth = 5;
 
     //on nomme les axes
     let series = chart.series.push(new am4charts.LineSeries());
@@ -56,6 +48,30 @@ export class StatsComponent implements OnInit {
 
     this.chart = chart;
 
+    this.setData();
   }
 
+  //set data into the graph
+  private setData(){
+    //données
+    let data = [];
+    let visits = 0;
+
+    //pour mettre des trucs randoms dans les données
+    console.log(this.trainings);
+    for (let i = 0; i < this.trainings.length; i++) {
+      console.log(this.trainings[i].points);
+      console.log(this.trainings[i].trainingDateValue);
+      visits += this.trainings[i].points;
+      data.push({ date: this.trainings[i].trainingDateValue, name: this.trainings[i].activityName, value: visits });
+    }
+
+    //on envoie les données dans le graphique
+    this.chart.data = data;
+  }
+
+  private getTrainings() {
+    this.trainingService.getByUserId(1)
+      .subscribe(trainings => {this.trainings=trainings;this.setGraph();});
+  }
 }

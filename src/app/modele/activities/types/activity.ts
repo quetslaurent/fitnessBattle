@@ -1,4 +1,4 @@
-import {Category} from '../../categories/category';
+import {Category} from '../../categories/types/category';
 import {Unit} from '../../units/unit';
 
 export interface Activity{
