@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserRepository} from '../modele/users/repositories/user-repository';
-import {User, Users} from '../modele/users/types/user';
-import {Subscription} from 'rxjs';
+import {AuthApiService} from '../modele/auth/repositories/auth-api.service';
+import {tryCatch} from 'rxjs/internal-compatibility';
+import {HttpErrorResponse} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-connection',
@@ -13,45 +14,32 @@ import {Subscription} from 'rxjs';
 export class ConnectionComponent implements OnInit {
 
   formLogIn:FormGroup = this.fb.group({
-    email:['',[Validators.required,Validators.email]],
+    name:['',[Validators.required]],
     password:['',Validators.required]
   });
 
   formSignIn:FormGroup = this.fb.group({
     email:['',[Validators.required,Validators.email]],
-    username:['',Validators.required],
+    name:['',Validators.required],
     password:['',Validators.required]
   });
 
   //isVisible, used to show one form or another
   isVisible: boolean = true;
 
-  //db connexion
-  //@Output() userCreated: EventEmitter<User> = new EventEmitter<User>();
-  users:Users = [];
-  subscriptions:Subscription[]=[];
 
-
-  constructor(public fb:FormBuilder/*,private userRepository:UserRepository*/) { }
+  constructor(public fb:FormBuilder,private  authService:AuthApiService) { }
 
   ngOnInit(): void {
   }
 
-/*
-  //create new user
-  postUser(user : User){
-    this.subscriptions.push(
-      this.userRepository.create(user).subscribe(user =>this.users.push(user))
-    );
+  logIn():void {
+    if(this.formLogIn.valid){
+      this.authService.login(this.formLogIn.value).subscribe(
+        data => alert(data.token),
+        error => alert(error.error));
+    }
   }
-
-  logIn(){
-
-  }
-
-  /*signIn(){
-    this.userCreated.emit(this.formSignIn.value);
-  }*/
 
   changeVisible() {
     this.isVisible = !this.isVisible;

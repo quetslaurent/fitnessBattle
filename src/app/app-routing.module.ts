@@ -10,7 +10,7 @@ const routes : Routes = [
     path:"connection",component:ConnectionComponent
   },
   {
-    //on redirige vers connection si on mets rien apres le / , et le full est la pour check toute l'url
+    //on redirige vers auth si on mets rien apres le / , et le full est la pour check toute l'url
     path:'',redirectTo:"/connection",pathMatch:"full"
   },
   {

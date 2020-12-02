@@ -7,14 +7,15 @@
       <h2>FitnessBattle</h2>
       <form  [formGroup]="formLogIn" (ngSubmit)="logIn()">
         <div class="user-box">
-          <input type="email" formControlName="email">
-          <label>Email</label>
+          <input type="text" formControlName="name">
+          <label>Name</label>
         </div>
         <div class="user-box">
           <input type="password" formControlName="password">
           <label>Password</label>
         </div>
-        <button type="submit" id="logInBtn" routerLink="/main/profile" routerLinkActive="active">
+<!--        <button type="submit" id="logInBtn" routerLink="/main/profile" routerLinkActive="active">-->
+        <button type="submit" id="logInBtn" >
           <span></span>
           <span></span>
           <span></span>
