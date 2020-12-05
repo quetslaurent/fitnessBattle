@@ -3,6 +3,8 @@ import {Activities, Activity} from '../modele/activities/types/activity';
 import {CategoriesApiService} from '../modele/categories/repositories/categories-api.service';
 import {ActivitiesByCategories} from '../modele/categories/types/ActivitiesByCategory';
 import {ActivitiesApiService} from '../modele/activities/repositories/activities-api.service';
+import {TokenApiService} from '../modele/token/repositories/token-api.service';
+import {UserToken} from '../modele/token/types/userToken';
 
 @Component({
   selector: 'app-profile',
@@ -19,13 +21,21 @@ export class ProfileComponent implements OnInit {
 
   activitiesByCategories: ActivitiesByCategories;
 
+  //PROFILE
+  userToken:UserToken={name:"",email:"",role:false};
 
-  constructor(private categoryService : CategoriesApiService,private activityService : ActivitiesApiService) { }
+
+  constructor(private categoryService : CategoriesApiService,private activityService : ActivitiesApiService,private tokenService : TokenApiService) { }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getUser();
+    //this.getCategories();
     this.getActivitiesByCategoryId();
 
+  }
+
+  private getUser(){
+    this.tokenService.getUserFromToken(localStorage.getItem("token")).subscribe(userToken =>{this.userToken=userToken;});
   }
 
   private getCategories(){
