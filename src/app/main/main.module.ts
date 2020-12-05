@@ -5,6 +5,7 @@ import {RankingModule} from '../ranking/ranking.module';
 import {StatsModule} from '../stats/stats.module';
 import {AboutUsModule} from '../about-us/about-us.module';
 import {ProfileModule} from '../profile/profile.module';
+import {AdminModule} from '../admin/admin.module';
 
 @NgModule({
   declarations: [MainRoutingModule.components],
@@ -14,7 +15,8 @@ import {ProfileModule} from '../profile/profile.module';
     RankingModule,
     StatsModule,
     AboutUsModule,
-    ProfileModule
+    ProfileModule,
+    AdminModule
   ]
 })
 export class MainModule {
