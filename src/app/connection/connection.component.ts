@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthApiService} from '../modele/auth/repositories/auth-api.service';
-import {tryCatch} from 'rxjs/internal-compatibility';
-import {HttpErrorResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {UsersApiService} from '../modele/users/repositories/users-api.service';
 
 
 @Component({
@@ -19,26 +19,47 @@ export class ConnectionComponent implements OnInit {
   });
 
   formSignIn:FormGroup = this.fb.group({
-    email:['',[Validators.required,Validators.email]],
     name:['',Validators.required],
+    email:['',[Validators.required,Validators.email]],
     password:['',Validators.required]
   });
 
-  //isVisible, used to show one form or another
-  isVisible: boolean = true;
+
+  isVisible: boolean = true;//isVisible, used to show one form or another
+  invalidToken: string;//error message if its an invalid user in logIn form
+  isLoginInvalid: boolean = false;//show the error message if its an invalid user in logIn form
+
+  //sign in
+  isInvalidSignIn: boolean = false;
+  invalidSignIn: string;
 
 
-  constructor(public fb:FormBuilder,private  authService:AuthApiService) { }
+  constructor(public fb:FormBuilder,private  authService:AuthApiService,public router:Router,private userService:UsersApiService) { }
 
   ngOnInit(): void {
   }
 
   logIn():void {
-    if(this.formLogIn.valid){
-      this.authService.login(this.formLogIn.value).subscribe(
-        data => alert(data.token),
-        error => alert(error.error));
-    }
+    this.authService.login(this.formLogIn.value).subscribe(
+      data => {
+        this.router.navigate(['main/profile']),
+        alert(data.token);
+        localStorage.setItem("token",data.token);
+      },
+      error => {
+        this.invalidToken = error.error, this.isLoginInvalid = true;
+      });
+  }
+
+  signIn() {
+      this.userService.create(this.formSignIn.value).subscribe(
+        data => {
+          this.changeVisible()
+        },
+        error => {
+          this.invalidSignIn = "This email or username is already used", this.isInvalidSignIn = true
+        }
+      );
   }
 
   changeVisible() {

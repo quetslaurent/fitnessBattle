@@ -4,6 +4,7 @@ import {User, Users} from '../types/user';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
+import {UserInputCreate} from '../types/userInputCreate';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UsersApiService implements UserRepository{
 
   constructor(private http:HttpClient) { }
 
-  create(user: User): Observable<User> {
+  create(user: UserInputCreate): Observable<User> {
     return this.http.post<User>(UsersApiService.URL,user);
   }
 

@@ -222,7 +222,7 @@
 }
 
 #notYetSub{
-  color: white;
+  color: ghostwhite;
   opacity: 50%;
   padding-top: 5px;
 }
@@ -231,6 +231,12 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.errorMessage{
+  color: ghostwhite;
+  font-weight: bold;
+}
+
 
 /*END LOGIN*/
 

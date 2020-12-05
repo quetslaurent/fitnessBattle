@@ -14,8 +14,8 @@
           <input type="password" formControlName="password">
           <label>Password</label>
         </div>
-<!--        <button type="submit" id="logInBtn" routerLink="/main/profile" routerLinkActive="active">-->
-        <button type="submit" id="logInBtn" >
+        <div id="isLoginInvalid" class="errorMessage" *ngIf="isLoginInvalid">{{invalidToken}}</div>
+        <button type="submit" id="logInBtn" [disabled]="formLogIn.invalid" >
           <span></span>
           <span></span>
           <span></span>
@@ -31,20 +31,21 @@
 
     <div class="box" *ngIf="!isVisible">
       <h2>FitnessBattle</h2>
-      <form [formGroup]="formSignIn" (ngSubmit)="postUser($event)">
+      <form [formGroup]="formSignIn" (ngSubmit)="signIn()">
+        <div class="user-box">
+          <input type="text" formControlName="name">
+          <label>UserName</label>
+        </div>
         <div class="user-box">
           <input type="email" formControlName="email">
           <label>Email</label>
         </div>
         <div class="user-box">
-          <input type="text" formControlName="username">
-          <label>UserName</label>
-        </div>
-        <div class="user-box">
           <input type="password" formControlName="password">
           <label>Password</label>
         </div>
-        <button type="submit" id="signInBtn">
+        <div id="isSignInInvalid" *ngIf="isInvalidSignIn">{{invalidSignIn}}</div>
+        <button type="submit" id="signInBtn" [disabled]="formSignIn.invalid">
           <span></span>
           <span></span>
           <span></span>

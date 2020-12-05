@@ -1,6 +1,6 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
-import {Users} from '../../modele/users/types/user';
-import {UsersApiService} from '../../modele/users/repositories/users-api.service';
+import {Users} from '../modele/users/types/user';
+import {UsersApiService} from '../modele/users/repositories/users-api.service';
 
 @Component({
   selector: 'app-ranking',

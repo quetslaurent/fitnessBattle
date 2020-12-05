@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import {TrainingsApiService} from '../../modele/trainings/repositories/trainings-api.service';
-import {Trainings} from '../../modele/trainings/types/training';
+import {TrainingsApiService} from '../modele/trainings/repositories/trainings-api.service';
+import {Trainings} from '../modele/trainings/types/training';
 
 @Component({
   selector: 'app-stats',
@@ -58,10 +58,7 @@ export class StatsComponent implements OnInit {
     let visits = 0;
 
     //pour mettre des trucs randoms dans les données
-    console.log(this.trainings);
     for (let i = 0; i < this.trainings.length; i++) {
-      console.log(this.trainings[i].points);
-      console.log(this.trainings[i].trainingDateValue);
       visits += this.trainings[i].points;
       data.push({ date: this.trainings[i].trainingDateValue, name: this.trainings[i].activityName, value: visits });
     }

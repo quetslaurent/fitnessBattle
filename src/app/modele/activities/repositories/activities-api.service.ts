@@ -3,13 +3,21 @@ import {ActivityRepository} from './activity-repository';
 import {Activities, Activity} from '../types/activity';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ActivitiesApiService implements ActivityRepository{
 
   static readonly URL:string = environment.serverAddress+'api/activity';
+
+  headerDict = {
+    'Authorization': 'Bearer '+ localStorage.getItem("token")
+  }
+
+  requestOptions = {
+    headers: new HttpHeaders(this.headerDict)
+  };
 
   constructor(private http:HttpClient) { }
 
@@ -22,7 +30,7 @@ export class ActivitiesApiService implements ActivityRepository{
   }
 
   getByCategoryId(categoryId: number): Observable<Activities> {
-    return this.http.get<Activities>(ActivitiesApiService.URL+'/'+categoryId);
+    return this.http.get<Activities>(ActivitiesApiService.URL+'/'+categoryId,this.requestOptions);
   }
 
   update(id: number, activity: Activity): Observable<any> {
