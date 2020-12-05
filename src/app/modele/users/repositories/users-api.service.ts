@@ -31,8 +31,8 @@ export class UsersApiService implements UserRepository{
     return this.http.get<Users>(UsersApiService.URL, this.requestOptions);
   }
 
-  getPointsById(id: number): Observable<number> {
-    return this.http.get<number>(UsersApiService.URL+"/points/"+id, this.requestOptions);
+  getPointsById(token: string): Observable<number> {
+    return this.http.get<number>(UsersApiService.URL+"/points/"+token, this.requestOptions);
   }
 
   delete(id: number) {
