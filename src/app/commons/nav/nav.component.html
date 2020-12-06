@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="ranking">🏆Ranking</a>
           </li>
+          <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link" routerLink="admin">🤖Admin</a>
+          </li>
         </ul>
         <button type="button" class="btn btn-danger">Log out</button>
       </div>

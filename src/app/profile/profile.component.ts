@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   activitiesByCategories: ActivitiesByCategories;
 
   //PROFILE
-  userToken:UserToken={name:"",email:"",role:false};
+  userToken:UserToken={name:"",email:"",role:""};
   points:number;
 
   constructor(private categoryService : CategoriesApiService,

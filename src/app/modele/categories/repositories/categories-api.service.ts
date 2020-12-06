@@ -35,6 +35,4 @@ export class CategoriesApiService implements CategoryRepository{
   getActivitiesByCategory(): Observable<ActivitiesByCategories> {
     return this.http.get<ActivitiesByCategories>(CategoriesApiService.URL+"/activities", this.requestOptions);
   }
-
-
 }
