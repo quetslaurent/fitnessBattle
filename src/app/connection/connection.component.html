@@ -14,7 +14,7 @@
           <input type="password" formControlName="password">
           <label>Password</label>
         </div>
-        <div id="isLoginInvalid" class="errorMessage" *ngIf="isLoginInvalid">{{invalidToken}}</div>
+        <div id="isLoginInvalid"class="alert alert-danger" role="alert" *ngIf="isLoginInvalid">{{invalidToken}}</div>
         <button type="submit" id="logInBtn" [disabled]="formLogIn.invalid" >
           <span></span>
           <span></span>
@@ -44,7 +44,7 @@
           <input type="password" formControlName="password">
           <label>Password</label>
         </div>
-        <div id="isSignInInvalid" *ngIf="isInvalidSignIn">{{invalidSignIn}}</div>
+        <div id="isSignInInvalid" class="alert alert-danger" role="alert" *ngIf="isInvalidSignIn">{{invalidSignIn}}</div>
         <button type="submit" id="signInBtn" [disabled]="formSignIn.invalid">
           <span></span>
           <span></span>
