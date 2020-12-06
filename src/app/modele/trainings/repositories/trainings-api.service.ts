@@ -30,8 +30,8 @@ export class TrainingsApiService implements TrainingsRepository{
     return this.http.get<Trainings>(TrainingsApiService.URL+"/date/"+dateId, this.requestOptions);
   }
 
-  getByUserId(userId: number): Observable<Trainings> {
-    return this.http.get<Trainings>(TrainingsApiService.URL+"/user/"+userId, this.requestOptions);
+  getByUserId(token: string): Observable<Trainings> {
+    return this.http.get<Trainings>(TrainingsApiService.URL+"/user/"+token, this.requestOptions);
   }
 
   delete(id:number): Observable<any> {
