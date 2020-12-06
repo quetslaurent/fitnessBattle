@@ -4,6 +4,7 @@ import {Activities, Activity} from '../types/activity';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ActivityToAdd} from '../types/activityToAdd';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,12 +22,12 @@ export class ActivitiesApiService implements ActivityRepository{
 
   constructor(private http:HttpClient) { }
 
-  create(activity: Activity): Observable<Activity> {
-    return this.http.post<Activity>(ActivitiesApiService.URL,activity);
+  create(activity: ActivityToAdd): Observable<Activity> {
+    return this.http.post<Activity>(ActivitiesApiService.URL,activity, this.requestOptions);
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete(ActivitiesApiService.URL+"/"+id);
+    return this.http.delete(ActivitiesApiService.URL+"/"+id, this.requestOptions);
   }
 
   getByCategoryId(categoryId: number): Observable<Activities> {
@@ -34,6 +35,6 @@ export class ActivitiesApiService implements ActivityRepository{
   }
 
   update(id: number, activity: Activity): Observable<any> {
-    return this.http.put(ActivitiesApiService.URL+'/'+id,activity);
+    return this.http.put(ActivitiesApiService.URL+'/'+id,activity, this.requestOptions);
   }
 }

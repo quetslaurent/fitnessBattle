@@ -1,87 +1,126 @@
-<h1>ADMIN SECTION</h1>
+<h1 class="main-title">ADMIN SECTION</h1>
 
-<h2>User managment</h2>
+<h2 class="subtitle">User managment</h2>
 <div class="user">
-  <h3>User List</h3>
+  <h3 class="subtitle-2">User List</h3>
   <div class="userTable" *ngIf="isUserVisible">
-    <table>
-      <thead>
-        <tr>
-          <td>Id</td>
-          <td>Name</td>
-          <td>Email</td>
-          <td>Admin</td>
-          <td>Points</td>
-          <td>Trainings</td>
-          <td>Remove</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{user.id}}</td>
-          <td>{{user.name}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.admin}}</td>
-          <td>{{user.points.toFixed(2)}}</td>
-          <td><button (click)="displayTrainings(user.id)">View</button></td>
-          <td><button (click)="removeUser(user.id)">X</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrapper">
+      <table border="solid" class="fl-table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Points</th>
+            <th>Trainings</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.admin}}</td>
+            <td>{{user.points.toFixed(2)}}</td>
+            <td><button (click)="displayTrainings(user.id)">View</button></td>
+            <td><button (click)="removeUser(user.id)">X</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="trainingTable" *ngIf="isTrainingVisible">
     <button (click)="hideTrainings()">Close</button>
-    <table>
+    <div class="table-wrapper">
+      <table border="solid" class="fl-table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Date</th>
+          <th>Repetitions</th>
+          <th>Activity</th>
+          <th>Points</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let training of trainings">
+          <td>{{training.id}}</td>
+          <td>{{training.trainingDateValue}}</td>
+          <td>{{training.repetitions}}</td>
+          <td>{{training.activityName}}</td>
+          <td>{{training.points.toFixed(2)}}</td>
+          <td><button (click)="removeTraining(training.id)">X</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<h2 class="subtitle">Activity managment</h2>
+<div class="category">
+  <div class="table-wrapper">
+    <table border="solid" class="fl-table">
       <thead>
       <tr>
-        <td>Id</td>
-        <td>Date</td>
-        <td>Repetitions</td>
-        <td>Activity</td>
-        <td>Points</td>
-        <td>Remove</td>
+        <th *ngFor="let category of categories" (click)="getActivities(category.id)">{{category.name}}</th>
+      </tr>
+      </thead>
+    </table>
+  </div>
+
+</div>
+<div class="activity">
+  <div class="table-wrapper">
+    <table border="solid" class="fl-table">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Repetitions</th>
+        <th>Unit</th>
+        <th>Remove</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let training of trainings">
-        <td>{{training.id}}</td>
-        <td>{{training.trainingDateValue}}</td>
-        <td>{{training.repetitions}}</td>
-        <td>{{training.activityName}}</td>
-        <td>{{training.points.toFixed(2)}}</td>
-        <td><button (click)="removeUser(training.id)">X</button></td>
+      <tr *ngFor="let activity of activities">
+        <td>{{activity.id}}</td>
+        <td>{{activity.name}}</td>
+        <td>{{activity.repetitions}}</td>
+        <td>{{activity.unitType}}</td>
+        <td><button (click)="removeActivity(activity.id)">X</button></td>
       </tr>
       </tbody>
     </table>
   </div>
-</div>
-<h2>Activity managment</h2>
-<div class="category">
-  <ul>
-    <li *ngFor="let category of categories" (click)="getActivities(category.id)">{{category.name}}</li>
-  </ul>
-</div>
-<div class="activity">
-  <table>
-    <thead>
-    <tr>
-      <td>Id</td>
-      <td>Name</td>
-      <td>Repetitions</td>
-      <td>Unit</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let activity of activities">
-      <td>{{activity.id}}</td>
-      <td>{{activity.name}}</td>
-      <td>{{activity.repetitions}}</td>
-      <td>{{activity.unit}}</td>
-    </tr>
-    </tbody>
-  </table>
+  <h3 class="subtitle-2">Add new activity</h3>
+  <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
+    <label>Name : </label>
+    <input type="text" formControlName="name">
+    <label>Repetitions : </label>
+    <input type="number" min="0" formControlName="repetitions">
+    <label>Unit : </label>
+    <select formControlName="unitId" id="unitSelector" (change)="changeUnitId()">
+      <option  *ngFor="let unit of units" value="{{unit.id}}">{{unit.type}}</option>
+    </select>
+    <button type="submit" [disabled]="activityForm.invalid">Add</button>
+  </form>
+  <h3 class="subtitle-2">Add new category</h3>
   <div class="category">
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+      <label>Name : </label>
+      <input type="text" formControlName="name">
+      <button type="submit" [disabled]="categoryForm.invalid">Add</button>
+    </form>
   </div>
+  <h3 class="subtitle-2">Add new unit</h3>
   <div class="unit">
+    <form [formGroup]="unitForm" (ngSubmit)="addUnit()">
+      <label>Type : </label>
+      <input type="text" formControlName="type">
+      <button type="submit" [disabled]="unitForm.invalid">Add</button>
+    </form>
   </div>
 </div>

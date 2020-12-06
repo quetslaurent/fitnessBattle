@@ -1,10 +1,8 @@
 import {Observable} from 'rxjs';
-import {Unit} from './unit';
+import {Unit, Units} from '../types/unit';
 
 
 export interface UnitRepository {
-  query() : Observable<Unit>;
-
+  query() : Observable<Units>;
   create(activity:Unit) : Observable<Unit>;
-
 }
