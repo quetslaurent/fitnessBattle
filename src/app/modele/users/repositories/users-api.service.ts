@@ -38,4 +38,10 @@ export class UsersApiService implements UserRepository{
   delete(id: number) {
     return this.http.delete(UsersApiService.URL+"/"+id, this.requestOptions);
   }
+
+  selfDelete(token: string) {
+    return this.http.delete(UsersApiService.URL+"/"+token, this.requestOptions);
+  }
+
+
 }

@@ -8,4 +8,8 @@ export interface UserRepository {
 
   create(user:User) : Observable<User>;
 
+  delete(id: number);
+
+  selfDelete(token:string);
+
 }
