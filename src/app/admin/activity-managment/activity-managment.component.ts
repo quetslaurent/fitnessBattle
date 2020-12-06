@@ -35,6 +35,16 @@ export class ActivityManagmentComponent implements OnInit {
     unitId:['', Validators.required]
   });
 
+  activityUpdateForm: FormGroup = this.fb.group({
+    name:['', Validators.required],
+    repetitions:['', Validators.required],
+    categoryId:['', Validators.required],
+    unitId:['', Validators.required]
+  });
+
+  isActivityVisible:boolean=true;
+  isUpdateVisible:boolean=false;
+
   //category list
   categories:Categories;
 
@@ -105,5 +115,17 @@ export class ActivityManagmentComponent implements OnInit {
     document.location.reload();
   }
 
+  displayUpdateActivity(id:number) {
+    this.isActivityVisible=false;
+    this.isUpdateVisible=true;
+  }
 
+  updateActivity(id:number) {
+    this.activityService.update(id,this.activityUpdateForm.value).subscribe();
+  }
+
+  closeUpdate() {
+    this.isActivityVisible=true;
+    this.isUpdateVisible=false;
+  }
 }

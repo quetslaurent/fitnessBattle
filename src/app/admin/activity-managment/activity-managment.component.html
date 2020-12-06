@@ -1,40 +1,51 @@
 <h2 class="subtitle">Activity managment</h2>
-<div class="category">
-  <div class="table-wrapper">
-    <table border="solid" class="fl-table">
-      <thead>
-      <tr>
-        <th *ngFor="let category of categories" (click)="getActivities(category.id)">{{category.name}}</th>
-      </tr>
-      </thead>
-    </table>
-  </div>
+<div class="activity-board" *ngIf="isActivityVisible">
+  <div class="category">
+    <div class="table-wrapper">
+      <table border="solid" class="fl-table">
+        <thead>
+        <tr>
+          <th *ngFor="let category of categories" (click)="getActivities(category.id)">{{category.name}}</th>
+        </tr>
+        </thead>
+      </table>
+    </div>
 
-</div>
-<div class="activity">
-  <div class="table-wrapper">
-    <table border="solid" class="fl-table">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Repetitions</th>
-        <th>Unit</th>
-        <th>Remove</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let activity of activities">
-        <td>{{activity.id}}</td>
-        <td>{{activity.name}}</td>
-        <td>{{activity.repetitions}}</td>
-        <td>{{activity.unitType}}</td>
-        <td><button (click)="removeActivity(activity.id)">X</button></td>
-      </tr>
-      </tbody>
-    </table>
   </div>
-<h3 class="subtitle-2">Add new activity</h3>
+  <div class="activity">
+    <div class="table-wrapper">
+      <table border="solid" class="fl-table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Repetitions</th>
+          <th>Unit</th>
+          <th>Update</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let activity of activities">
+          <td>{{activity.id}}</td>
+          <td>{{activity.name}}</td>
+          <td>{{activity.repetitions}}</td>
+          <td>{{activity.unitType}}</td>
+          <td><button (click)="displayUpdateActivity(activity.id)">🔄</button></td>
+          <td><button (click)="removeActivity(activity.id)">❌</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="activity-update" *ngIf="isUpdateVisible">
+  <button (click)="closeUpdate()">Close</button>
+</div>
+
+<div class="activity-managment">
+  <h3 class="subtitle-2">Add new activity</h3>
   <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
     <label>Name : </label>
     <input type="text" formControlName="name">
@@ -63,3 +74,4 @@
     </form>
   </div>
 </div>
+

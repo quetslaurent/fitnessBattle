@@ -60,5 +60,4 @@ export class UserManagmentComponent implements OnInit {
     this.isTrainingVisible= false;
     this.isUserVisible = true;
   }
-
 }
