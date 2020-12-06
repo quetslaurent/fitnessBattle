@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Activities} from '../../modele/activities/types/activity';
+import {Activities, Activity} from '../../modele/activities/types/activity';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Categories} from '../../modele/categories/types/category';
 import {Units} from '../../modele/units/types/unit';
-import {ActivityToAdd} from '../../modele/activities/types/activityToAdd';
+import {ActivityToManage} from '../../modele/activities/types/activityToManage';
 import {ActivitiesApiService} from '../../modele/activities/repositories/activities-api.service';
 import {CategoriesApiService} from '../../modele/categories/repositories/categories-api.service';
 import {UnitApiService} from '../../modele/units/repositories/unit-api.service';
@@ -42,7 +42,9 @@ export class ActivityManagmentComponent implements OnInit {
     unitId:['', Validators.required]
   });
 
-  isActivityVisible:boolean=true;
+  bufferActivity:Activity = {name:"Activity name",repetitions:0,categoryName:"",unitType:""};
+
+  activityIdUpdate:number;
   isUpdateVisible:boolean=false;
 
   //category list
@@ -89,7 +91,7 @@ export class ActivityManagmentComponent implements OnInit {
   }
 
   addActivity() {
-    let act:ActivityToAdd = {
+    let act:ActivityToManage = {
       name : this.activityForm.controls['name'].value,
       repetitions : this.activityForm.controls['repetitions'].value,
       categoryId : this.categoryIdSelected,
@@ -105,8 +107,8 @@ export class ActivityManagmentComponent implements OnInit {
     this.unitService.query().subscribe(units => this.units = units);
   }
 
-  changeUnitId() {
-    let value = (<HTMLSelectElement>document.getElementById('unitSelector')).value;
+  changeUnitIdCreate() {
+    let value = (<HTMLSelectElement>document.getElementById('unitSelectorCreate')).value;
     this.unitIdSelected=Number(value);
   }
 
@@ -115,17 +117,31 @@ export class ActivityManagmentComponent implements OnInit {
     document.location.reload();
   }
 
-  displayUpdateActivity(id:number) {
-    this.isActivityVisible=false;
+  updateActivity() {
+    let act:ActivityToManage = {
+      name : this.activityUpdateForm.controls['name'].value,
+      repetitions : this.activityUpdateForm.controls['repetitions'].value,
+      categoryId : this.categoryIdSelected,
+      unitId : this.unitIdSelected,
+    }
+    console.log(this.activityIdUpdate);
+    console.log(act);
+    this.activityService.update(this.activityIdUpdate,act).subscribe();
+  }
+
+  changeUnitIdUpdate() {
+    let value = (<HTMLSelectElement>document.getElementById('unitSelectorUpdate')).value;
+    this.unitIdSelected=Number(value);
+  }
+
+  changeCategoryIdUpdate() {
+    let value = (<HTMLSelectElement>document.getElementById('categorySelectorUpdate')).value;
+    this.categoryIdSelected=Number(value);
+  }
+
+  displayUpdateActivity(activity:Activity) {
+    this.bufferActivity=activity;
     this.isUpdateVisible=true;
-  }
-
-  updateActivity(id:number) {
-    this.activityService.update(id,this.activityUpdateForm.value).subscribe();
-  }
-
-  closeUpdate() {
-    this.isActivityVisible=true;
-    this.isUpdateVisible=false;
+    this.activityIdUpdate=activity.id;
   }
 }

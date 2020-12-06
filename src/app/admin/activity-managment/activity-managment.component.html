@@ -1,5 +1,5 @@
 <h2 class="subtitle">Activity managment</h2>
-<div class="activity-board" *ngIf="isActivityVisible">
+<div class="activity-board">
   <div class="category">
     <div class="table-wrapper">
       <table border="solid" class="fl-table">
@@ -26,22 +26,33 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let activity of activities">
-          <td>{{activity.id}}</td>
-          <td>{{activity.name}}</td>
-          <td>{{activity.repetitions}}</td>
-          <td>{{activity.unitType}}</td>
-          <td><button (click)="displayUpdateActivity(activity.id)">🔄</button></td>
-          <td><button (click)="removeActivity(activity.id)">❌</button></td>
-        </tr>
+            <tr *ngFor="let activity of activities">
+              <td>{{activity.id}}</td>
+              <td>{{activity.name}}</td>
+              <td>{{activity.repetitions}}</td>
+              <td>{{activity.unitType}}</td>
+              <td><button (click)="displayUpdateActivity(activity)">🔄</button></td>
+              <td><button (click)="removeActivity(activity.id)">❌</button></td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <form [formGroup]="activityUpdateForm" (ngSubmit)="updateActivity()">
+                <input type="text" formControlName="name" [(ngModel)]="bufferActivity.name">
+                <input type="number" min="0" formControlName="repetitions" [(ngModel)]="bufferActivity.repetitions">
+                <select formControlName="categoryId" id="categorySelectorUpdate" (change)="changeCategoryIdUpdate()">
+                  <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                </select>
+                <select formControlName="unitId" id="unitSelectorUpdate" (change)="changeUnitIdUpdate()">
+                  <option  *ngFor="let unit of units" value="{{unit.id}}">{{unit.type}}</option>
+                </select>
+                <button type="submit" [disabled]="activityUpdateForm.invalid">Update</button>
+                 </form>
+              </td>
+            </tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>
-
-<div class="activity-update" *ngIf="isUpdateVisible">
-  <button (click)="closeUpdate()">Close</button>
 </div>
 
 <div class="activity-managment">
@@ -52,7 +63,7 @@
     <label>Repetitions : </label>
     <input type="number" min="0" formControlName="repetitions">
     <label>Unit : </label>
-    <select formControlName="unitId" id="unitSelector" (change)="changeUnitId()">
+    <select formControlName="unitId" id="unitSelectorCreate" (change)="changeUnitIdCreate()">
       <option  *ngFor="let unit of units" value="{{unit.id}}">{{unit.type}}</option>
     </select>
     <button type="submit" [disabled]="activityForm.invalid">Add</button>

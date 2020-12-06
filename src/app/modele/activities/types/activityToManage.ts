@@ -1,5 +1,5 @@
 
-export interface ActivityToAdd{
+export interface ActivityToManage {
   name:string;
   repetitions:number;
   unitId:number;

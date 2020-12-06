@@ -4,7 +4,7 @@ import {Activities, Activity} from '../types/activity';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ActivityToAdd} from '../types/activityToAdd';
+import {ActivityToManage} from '../types/activityToManage';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +22,7 @@ export class ActivitiesApiService implements ActivityRepository{
 
   constructor(private http:HttpClient) { }
 
-  create(activity: ActivityToAdd): Observable<Activity> {
+  create(activity: ActivityToManage): Observable<Activity> {
     return this.http.post<Activity>(ActivitiesApiService.URL,activity, this.requestOptions);
   }
 
@@ -34,7 +34,7 @@ export class ActivitiesApiService implements ActivityRepository{
     return this.http.get<Activities>(ActivitiesApiService.URL+'/'+categoryId,this.requestOptions);
   }
 
-  update(id: number, activity: Activity): Observable<any> {
+  update(id: number, activity: ActivityToManage): Observable<any> {
     return this.http.put(ActivitiesApiService.URL+'/'+id,activity, this.requestOptions);
   }
 }
