@@ -68,7 +68,7 @@ export class StatsComponent implements OnInit {
   }
 
   private getTrainings() {
-    this.trainingService.getByUserId(1)
+    this.trainingService.getByUserId(localStorage.getItem("token"))
       .subscribe(trainings => {this.trainings=trainings;this.setGraph();});
   }
 }

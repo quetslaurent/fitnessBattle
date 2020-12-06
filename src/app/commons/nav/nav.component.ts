@@ -28,4 +28,7 @@ export class NavComponent implements OnInit {
     this.tokenService.getUserFromToken(localStorage.getItem("token")).subscribe(userToken =>{this.userToken=userToken;this.checkAdmin();});
   }
 
+  logOut() {
+    localStorage.setItem("token","");
+  }
 }
