@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthApiService} from '../modele/auth/repositories/auth-api.service';
 import {Router} from '@angular/router';
@@ -43,7 +43,6 @@ export class ConnectionComponent implements OnInit {
     this.authService.login(this.formLogIn.value).subscribe(
       data => {
         this.router.navigate(['main/profile']),
-        alert(data.token);
         localStorage.setItem("token",data.token);
       },
       error => {

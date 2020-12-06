@@ -6,6 +6,7 @@ import {ActivitiesApiService} from '../modele/activities/repositories/activities
 import {TokenApiService} from '../modele/token/repositories/token-api.service';
 import {UserToken} from '../modele/token/types/userToken';
 import {UsersApiService} from '../modele/users/repositories/users-api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
   constructor(private categoryService : CategoriesApiService,
               private activityService : ActivitiesApiService,
               private tokenService : TokenApiService,
-              private userService : UsersApiService) { }
+              private userService : UsersApiService,private router :Router) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -52,9 +53,16 @@ export class ProfileComponent implements OnInit {
       .subscribe(activitiesByCategories => this.activitiesByCategories=activitiesByCategories);
   }
 
+  public selfDelete() {
+    if(window.confirm("Are you sure to delete?")){
+      this.userService.selfDelete(localStorage.getItem("token")).subscribe();
+      this.router.navigate(["../../connection"]);
+    }
+  }
+
 
   private getActivitiesByCategoryId(){
-    this.activityService.getByCategoryId(1).subscribe(activities => {this.activities=activities;console.log(this.activities);});
+    this.activityService.getByCategoryId(1).subscribe(activities => {this.activities=activities;});
   }
 
   // changeAddActivityView() {
