@@ -7,6 +7,12 @@ import {TokenApiService} from '../modele/token/repositories/token-api.service';
 import {UserToken} from '../modele/token/types/userToken';
 import {UsersApiService} from '../modele/users/repositories/users-api.service';
 import {Router} from '@angular/router';
+import {Categories} from '../modele/categories/types/category';
+import {Training, Trainings} from '../modele/trainings/types/training';
+import {TrainingsApiService} from '../modele/trainings/repositories/trainings-api.service';
+import {TrainingDatesApiService} from '../modele/training-dates/repositories/training-dates-api.service';
+import {TrainingDate} from '../modele/training-dates/types/trainingDate';
+import {TrainingToAdd} from '../modele/trainings/types/trainingToAdd';
 
 @Component({
   selector: 'app-profile',
@@ -14,30 +20,32 @@ import {Router} from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  // isAddActivity: boolean = false;
-  // activitiesBookmarked: Activities;
-  // activitiesAvailable: Activities;
-
-
-  activities : Activities;
-
-  activitiesByCategories: ActivitiesByCategories;
 
   //PROFILE
   userToken:UserToken={name:"",email:"",role:""};
   points:number;
 
+  //Activities informations
+  activitiesByCategories: ActivitiesByCategories;
+
+  //Add training
+  activitiesAvailable : Activities;
+  categories: Categories;
+
   constructor(private categoryService : CategoriesApiService,
               private activityService : ActivitiesApiService,
               private tokenService : TokenApiService,
-              private userService : UsersApiService,private router :Router) { }
+              private userService : UsersApiService,
+              private trainingDateService: TrainingDatesApiService,
+              private trainingService : TrainingsApiService,
+              private router :Router) { }
 
   ngOnInit(): void {
     this.getUser();
-    this.getCategories();
+    this.getActivitiesByCategories();
     this.getPoints();
-    //this.getActivitiesByCategoryId();
-
+    this.getCategories();
+    this.getActivitiesAvailable(1);
   }
 
   private getUser(){
@@ -48,9 +56,17 @@ export class ProfileComponent implements OnInit {
     this.userService.getPointsById(localStorage.getItem("token")).subscribe(points =>{this.points=points;});
   }
 
-  private getCategories(){
+  private getActivitiesByCategories(){
     this.categoryService.getActivitiesByCategory()
-      .subscribe(activitiesByCategories => this.activitiesByCategories=activitiesByCategories);
+      .subscribe(activitiesByCategories =>{ this.activitiesByCategories=activitiesByCategories;console.log(activitiesByCategories)});
+  }
+
+  private getActivitiesAvailable(id:number) {
+    this.activityService.getByCategoryId(id).subscribe(activities => this.activitiesAvailable=activities);
+  }
+
+  private getCategories() {
+    this.categoryService.query().subscribe(categories => this.categories = categories);
   }
 
   public selfDelete() {
@@ -60,44 +76,40 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
-  private getActivitiesByCategoryId(){
-    this.activityService.getByCategoryId(1).subscribe(activities => {this.activities=activities;});
+  increaseRep(id: number) {
+    let value:number = Number((<HTMLSelectElement>document.getElementById('rep'+id)).value);
+    value+=1;
+    (<HTMLSelectElement>document.getElementById('rep'+id)).value = value.toString();
   }
 
-  // changeAddActivityView() {
-  //   this.isAddActivity = !this.isAddActivity;
-  // }
+  decreaseRep(id: number) {
+    let value:number = Number((<HTMLSelectElement>document.getElementById('rep'+id)).value);
+    if(value>0)
+      value-=1;
+    (<HTMLSelectElement>document.getElementById('rep'+id)).value = value.toString();
+  }
 
-  // decrease(act: Activity) {
-  //   /*
-  //   if(act.rep>0)
-  //     act.rep--;*/
-  // }
-  //
-  // increase(act: Activity) {
-  //
-  //   //act.rep++;
-  //
-  // }
-  //
-  // bookmark(act: Activity) {
-  //   for(let element of this.activitiesBookmarked) {
-  //     if(element.name === act.name) {
-  //       return;
-  //     }
-  //   }
-  //   this.activitiesBookmarked.push(act);
-  // }
-  //
-  // unBookmark(act: Activity) {
-  //   for(let element of this.activitiesBookmarked) {
-  //     if(element.name === act.name) {
-  //       let index = this.activitiesBookmarked.indexOf(element, 0);
-  //       if (index > -1) {
-  //         this.activitiesBookmarked.splice(index, 1);
-  //       }
-  //     }
-  //   }
-  // }
+  addTrainings() {
+    /*
+    let trainingDate:TrainingDate = {
+      date : new Date()
+    }
+    let trainingDateWithId;
+    this.trainingDateService.create(trainingDate).subscribe(trainingDate => trainingDateWithId = trainingDate);
+    */
+
+    this.activitiesAvailable.forEach(function(act) {
+      let value:number = Number((<HTMLSelectElement>document.getElementById('rep'+act.id)).value);
+      if (value>0) {
+        let trainingToAdd:TrainingToAdd = {
+          activityId : act.id,
+          repetitions : value,
+          trainingDateId : 1,
+          userId : 1
+        }
+        //this.trainingService.create(trainingToAdd).subscribe();
+        console.log(trainingToAdd);
+      }
+    });
+  }
 }

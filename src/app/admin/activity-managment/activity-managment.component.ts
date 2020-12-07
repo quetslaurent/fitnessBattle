@@ -124,8 +124,6 @@ export class ActivityManagmentComponent implements OnInit {
       categoryId : this.categoryIdSelected,
       unitId : this.unitIdSelected,
     }
-    console.log(this.activityIdUpdate);
-    console.log(act);
     this.activityService.update(this.activityIdUpdate,act).subscribe();
   }
 
