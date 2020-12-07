@@ -22,8 +22,8 @@
           <td>{{user.email}}</td>
           <td>{{user.role}}</td>
           <td>{{user.points.toFixed(2)}}</td>
-          <td><button (click)="displayTrainings(user.id)">View</button></td>
-          <td><button (click)="removeUser(user.id)">❌</button></td>
+          <td><button (click)="displayTrainings(user.id)" class="btn btn-info">View</button></td>
+          <td><button (click)="removeUser(user.id)" class="btn btn-outline-danger">❌</button></td>
         </tr>
         </tbody>
       </table>

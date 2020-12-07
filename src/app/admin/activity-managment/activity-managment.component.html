@@ -1,4 +1,4 @@
-<h2 class="subtitle">Activity managment</h2>
+<h2 class="subtitle" >Activity managment</h2>
 <div class="activity-board">
   <div class="category">
     <div class="table-wrapper">
@@ -31,21 +31,21 @@
               <td>{{activity.name}}</td>
               <td>{{activity.repetitions}}</td>
               <td>{{activity.unitType}}</td>
-              <td><button (click)="displayUpdateActivity(activity)">🔄</button></td>
-              <td><button (click)="removeActivity(activity.id)">❌</button></td>
+              <td><button (click)="displayUpdateActivity(activity)" class="btn btn-outline-primary">🔄</button></td>
+              <td><button (click)="removeActivity(activity.id)" class="btn btn-outline-danger">❌</button></td>
             </tr>
             <tr>
               <td colspan="6">
-                <form [formGroup]="activityUpdateForm" (ngSubmit)="updateActivity()">
-                <input type="text" formControlName="name" [(ngModel)]="bufferActivity.name">
-                <input type="number" min="0" formControlName="repetitions" [(ngModel)]="bufferActivity.repetitions">
-                <select formControlName="categoryId" id="categorySelectorUpdate" (change)="changeCategoryIdUpdate()">
-                  <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                <form [formGroup]="activityUpdateForm" (ngSubmit)="updateActivity()" class="d-flex justify-content-around">
+                <input class="col-sm-1 col-form-label" type="text" formControlName="name" [(ngModel)]="bufferActivity.name">
+                <input class="col-sm-1 col-form-label" type="number" min="0" formControlName="repetitions" [(ngModel)]="bufferActivity.repetitions">
+                <select class="col-sm-1 col-form-label" formControlName="categoryId" id="categorySelectorUpdate" (change)="changeCategoryIdUpdate() ">
+                  <option  *ngFor="let category of categories" value="{{category.id}}" [selected]="bufferActivity.categoryName == category.name">{{category.name}}</option>
                 </select>
-                <select formControlName="unitId" id="unitSelectorUpdate" (change)="changeUnitIdUpdate()">
-                  <option  *ngFor="let unit of units" value="{{unit.id}}">{{unit.type}}</option>
+                <select class="col-sm-1 col-form-label" formControlName="unitId" id="unitSelectorUpdate" (change)="changeUnitIdUpdate()">
+                  <option  *ngFor="let unit of units" value="{{unit.id}}" [selected]="bufferActivity.unitType == unit.type">{{unit.type}}</option>
                 </select>
-                <button type="submit" [disabled]="activityUpdateForm.invalid">Update</button>
+                <button type="submit" [disabled]="activityUpdateForm.invalid" class="btn btn-outline-success">Update</button>
                  </form>
               </td>
             </tr>
@@ -56,32 +56,41 @@
 </div>
 
 <div class="activity-managment">
+  <br/>
   <h3 class="subtitle-2">Add new activity</h3>
-  <form [formGroup]="activityForm" (ngSubmit)="addActivity()">
-    <label>Name : </label>
+  <form [formGroup]="activityForm" (ngSubmit)="addActivity()" class="text-center ">
+    <label class="col-sm-1 col-form-label">Name : </label>
     <input type="text" formControlName="name">
-    <label>Repetitions : </label>
+    <label class="col-sm-1 col-form-label">Repetitions : </label>
     <input type="number" min="0" formControlName="repetitions">
-    <label>Unit : </label>
-    <select formControlName="unitId" id="unitSelectorCreate" (change)="changeUnitIdCreate()">
+    <label class="col-sm-1 col-form-label">Unit : </label>
+    <select formControlName="unitId" id="unitSelectorCreate"  (change)="changeUnitIdCreate()">
       <option  *ngFor="let unit of units" value="{{unit.id}}">{{unit.type}}</option>
     </select>
-    <button type="submit" [disabled]="activityForm.invalid">Add</button>
+    <br/>
+    <br/>
+    <button type="submit" [disabled]="activityForm.invalid" class="btn btn-outline-success col-sm-1 col-form-label">Add</button>
   </form>
+  <br/>
   <h3 class="subtitle-2">Add new category</h3>
   <div class="category">
-    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
-      <label>Name : </label>
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()" class="text-center">
+      <label class="col-sm-1 col-form-label">Name : </label>
       <input type="text" formControlName="name">
-      <button type="submit" [disabled]="categoryForm.invalid">Add</button>
+      <br/>
+      <br/>
+      <button type="submit" [disabled]="categoryForm.invalid" class="btn btn-outline-success col-sm-1 col-form-label">Add</button>
     </form>
   </div>
+  <br/>
   <h3 class="subtitle-2">Add new unit</h3>
   <div class="unit">
-    <form [formGroup]="unitForm" (ngSubmit)="addUnit()">
-      <label>Type : </label>
+    <form [formGroup]="unitForm" (ngSubmit)="addUnit()" class="text-center">
+      <label class="col-sm-1 col-form-label">Type : </label>
       <input type="text" formControlName="type">
-      <button type="submit" [disabled]="unitForm.invalid">Add</button>
+      <br/>
+      <br/>
+      <button type="submit" [disabled]="unitForm.invalid" class="btn btn-outline-success col-sm-1 col-form-label">Add</button>
     </form>
   </div>
 </div>
