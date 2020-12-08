@@ -1,10 +1,8 @@
 import DateTimeFormat = Intl.DateTimeFormat;
 
 export interface TrainingDate{
-
   id?:number;
-  date:DateTimeFormat;
-
+  date:Date;
 }
 
 export declare type TrainingDates = TrainingDate[];

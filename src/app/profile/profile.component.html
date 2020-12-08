@@ -25,33 +25,30 @@
 <!------------------LIST OF THE ACTIVITIES----------------->
         <div class="card mb-3">
           <div class="card-body">
-            <div class="row" *ngIf="!isAddActivity">
+            <!--ADD ACTIVITY-->
+            <div class="row">
               <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let act of activitiesBookmarked">
-                  {{act.name}}
-                  <span class="badge badge-info badge-pill">
-                    <button class="btn-danger" (click)="decrease(act)">-</button>
-                    {{act.rep}}
-                    <button class="btn-success" (click)="increase(act)">+</button>
-                  </span>
+                <li class="list-group-item d-flex justify-content-between align-items-center"
+                    *ngFor="let cat of categories"
+                    (click)="getActivitiesAvailable(cat.id)">
+                  {{cat.name}}
                 </li>
               </ul>
             </div>
-            <!--ADD ACTIVITY-->
-            <div class="row" *ngIf="isAddActivity">
+            <div class="row" style="margin-top: 1rem">
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let act of activitiesAvailable">
                   {{act.name}}
                   <span class="badge badge-info badge-pill">
-                    <button class="btn-success" (click)="bookmark(act)">+</button>
-                    <button class="btn-danger" (click)="unBookmark(act)">-</button>
+                    <button class="btn-success" (click)="increaseRep(act.id)">+</button>
+                    <input type="number" min="0" id="rep{{act.id}}" value="0">
+                    <button class="btn-danger" (click)="decreaseRep(act.id)">-</button>
                   </span>
                 </li>
               </ul>
             </div>
-
-            <div class="card mt-3">
-              <button id="addActivityBtn" (click)="changeAddActivityView()">ADD NEW ACTIVITY</button>
+            <div class="row" style="margin-top: 1rem;margin-left: .1rem;">
+              <button id="btnAddTrainings" type="submit" (click)="addTrainings()">Submit</button>
             </div>
         </div>
       </div>

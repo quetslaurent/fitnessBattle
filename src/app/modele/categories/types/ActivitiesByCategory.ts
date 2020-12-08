@@ -1,10 +1,10 @@
-import {Activities} from '../../activities/types/activity';
+import {ActivitiesFromCategories} from '../../activities/types/activityFromCategories';
 
 export interface ActivitiesByCategory{
 
   id?:number;
   name:string;
-  activities: Activities;
+  activities: ActivitiesFromCategories;
 }
 
 export declare type ActivitiesByCategories = ActivitiesByCategory[];
