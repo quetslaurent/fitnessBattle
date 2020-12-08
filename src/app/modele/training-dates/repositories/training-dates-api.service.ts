@@ -3,7 +3,6 @@ import {environment} from '../../../../environments/environment';
 import {TrainingDatesRepository} from './training-dates-repository';
 import {TrainingDate, TrainingDates} from '../types/trainingDate';
 import {Observable} from 'rxjs';
-import {Training, Trainings} from '../../trainings/types/training';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
@@ -29,5 +28,9 @@ export class TrainingDatesApiService implements TrainingDatesRepository{
 
   query(): Observable<TrainingDates> {
     return this.http.get<TrainingDates>(TrainingDatesApiService.URL, this.requestOptions);
+  }
+
+  createToday(): Observable<TrainingDate>  {
+    return this.http.post<TrainingDate>(TrainingDatesApiService.URL+"/today", this.requestOptions);
   }
 }

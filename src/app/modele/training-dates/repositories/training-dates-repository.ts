@@ -5,4 +5,6 @@ export interface TrainingDatesRepository {
   query() : Observable<TrainingDates>;
 
   create(training:TrainingDate) : Observable<TrainingDate>;
+
+  createToday(): Observable<TrainingDate>;
 }

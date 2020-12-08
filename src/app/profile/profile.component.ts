@@ -11,6 +11,7 @@ import {Categories} from '../modele/categories/types/category';
 import {TrainingsApiService} from '../modele/trainings/repositories/trainings-api.service';
 import {TrainingDatesApiService} from '../modele/training-dates/repositories/training-dates-api.service';
 import {TrainingToAdd} from '../modele/trainings/types/trainingToAdd';
+import {TrainingDate} from '../modele/training-dates/types/trainingDate';
 
 @Component({
   selector: 'app-profile',
@@ -95,6 +96,12 @@ export class ProfileComponent implements OnInit {
   }
 
   addTrainings() {
+    this.trainingDateService.createToday().subscribe(trainingDate => {
+      console.log(trainingDate);this.createTraining(trainingDate.id);
+    });
+  }
+
+  createTraining(idDate:number) {
     let userIdFromToken:number = this.userToken.id;
     this.activitiesAvailable.forEach(act =>{
       let value:number = this.rep[act.id];
@@ -102,9 +109,10 @@ export class ProfileComponent implements OnInit {
         let trainingToAdd:TrainingToAdd = {
           activityId : act.id,
           repetitions : value,
-          trainingDateId : 1,
+          trainingDateId : idDate,
           userId : userIdFromToken
         }
+        console.log(trainingToAdd);
         this.trainingService.create(trainingToAdd).subscribe();
         console.log(trainingToAdd);
       }
@@ -113,6 +121,8 @@ export class ProfileComponent implements OnInit {
 
   getActivitiesByCategories(){
     this.categoryService.getActivitiesByCategory()
-      .subscribe(activitiesByCategories =>{ this.activitiesByCategories=activitiesByCategories;console.log(activitiesByCategories)});
+      .subscribe(activitiesByCategories =>{
+        this.activitiesByCategories=activitiesByCategories;
+      });
   }
 }
