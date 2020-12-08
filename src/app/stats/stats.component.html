@@ -1,3 +1,26 @@
 <div class="col-md-12">
   <div id="chartdiv" style="width: 100%; height: 500px"></div>
 </div>
+
+<div class="activity-board">
+  <div class="activity">
+    <div class="table-wrapper">
+      <table border="solid" class="fl-table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Repetitions</th>
+          <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let training of trainings">
+          <td>{{training.activityName}}</td>
+          <td>{{training.repetitions}}</td>
+          <td>{{training.trainingDateValue | date : 'shortDate'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
