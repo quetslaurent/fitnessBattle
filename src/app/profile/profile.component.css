@@ -62,6 +62,7 @@ body{
 .list-group button{
   width: 30px;
   height: 30px;
+  border-style: none;
   border-radius: 15px;
 }
 
@@ -96,4 +97,37 @@ ul{
   width: 100%;
   margin-left: 2%;
   margin-right: 2%;
+}
+
+/*add acti*/
+.category{
+  cursor: pointer;
+}
+
+input[type="radio"]{
+ visibility: hidden;
+}
+
+input[type="radio"]:checked+label{
+  color: white;
+  background-color: #33ce57;
+}
+
+.category label {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 10px 40px;
+  width: 100%;
+  font-family: sans-serif, Arial;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.category label:hover{
+  color: white;
+  background-color: #33ce57;
+}
+
+.input{
+  text-align: center;
 }

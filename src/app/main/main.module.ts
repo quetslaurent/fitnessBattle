@@ -6,6 +6,7 @@ import {StatsModule} from '../stats/stats.module';
 import {AboutUsModule} from '../about-us/about-us.module';
 import {ProfileModule} from '../profile/profile.module';
 import {AdminModule} from '../admin/admin.module';
+import {ApplicationModule} from '../application/application.module';
 
 @NgModule({
   declarations: [MainRoutingModule.components],
@@ -16,7 +17,8 @@ import {AdminModule} from '../admin/admin.module';
     StatsModule,
     AboutUsModule,
     ProfileModule,
-    AdminModule
+    AdminModule,
+    ApplicationModule
   ]
 })
 export class MainModule {

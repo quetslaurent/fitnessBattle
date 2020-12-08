@@ -28,11 +28,12 @@
             <!--ADD ACTIVITY-->
             <div class="row">
               <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center"
-                    *ngFor="let cat of categories"
-                    (click)="sortActivities(cat.name)">
-                  {{cat.name}}
-                </li>
+                <span *ngFor="let cat of categories"  class="category">
+                <input type="radio" class="category list-group-item d-flex justify-content-between align-items-center"
+                    (click)="sortActivities(cat.name)"
+                  id="{{cat.name}}" name="category"/>
+                <label for="{{cat.name}}" class="category">{{cat.name}}</label>
+                </span>
               </ul>
             </div>
             <div class="row" style="margin-top: 1rem">
@@ -40,18 +41,17 @@
                 <span *ngFor="let act of activitiesAvailable">
                   <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="act.categoryName==categorieNameSelected">
                     {{act.name}}
-                    <span class="badge badge-info badge-pill">
-                      <button class="btn-danger" (click)="decreaseRep(act.id)">-</button>
-                        <input type="number" min="0" value="{{getRep(act.id)}}" disabled>
-                      <button class="btn-success" (click)="increaseRep(act.id)">+</button>
+                    <span>
+                      <button class="btn-outline-danger" (click)="decreaseRep(act.id)">-</button>
+                        <input type="number" min="0" value="{{getRep(act.id)}}" disabled class="input">
+                      <button class=" btn-outline-success" (click)="increaseRep(act.id)">+</button>
                       </span>
-
                   </li>
                 </span>
               </ul>
             </div>
-            <div class="row" style="margin-top: 1rem;margin-left: .1rem;">
-              <button id="btnAddTrainings" type="submit" (click)="addTrainings()">Submit</button>
+            <div class="row d-flex justify-content-center" style="margin-top: 1rem;margin-left: .1rem;">
+              <button id="btnAddTrainings" type="submit" (click)="addTrainings()">add training</button>
             </div>
         </div>
       </div>

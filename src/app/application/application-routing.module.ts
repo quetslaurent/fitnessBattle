@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {ApplicationComponent} from './application.component';
 import {MainComponent} from '../main/main.component';
-import {AdminComponent} from './admin.component';
 
 const routes: Routes = [
   {
     path:'main',component:MainComponent,
     children: [
       {
-        path: 'admin', component: AdminComponent,
+        path: 'application', component: ApplicationComponent,
         canActivate: []
       }
     ]
@@ -19,8 +19,9 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule {
+export class ApplicationRoutingModule {
   static components = [
-    AdminComponent
+    ApplicationComponent
   ];
+
 }
