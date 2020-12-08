@@ -4,6 +4,7 @@ import {Training, Trainings} from '../types/training';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
+import {TrainingToAdd} from '../types/trainingToAdd';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class TrainingsApiService implements TrainingsRepository{
 
   constructor(private http:HttpClient) { }
 
-  create(training: Training): Observable<Training> {
-    return this.http.post<Training>(TrainingsApiService.URL,training, this.requestOptions);
+  create(trainingToAdd: TrainingToAdd): Observable<Training> {
+    return this.http.post<Training>(TrainingsApiService.URL,trainingToAdd, this.requestOptions);
   }
 
   getByTrainingDateId(dateId: number): Observable<Trainings> {

@@ -2,7 +2,7 @@ import DateTimeFormat = Intl.DateTimeFormat;
 
 export interface TrainingDate{
   id?:number;
-  date:Date;
+  date:DateTimeFormat;
 }
 
 export declare type TrainingDates = TrainingDate[];

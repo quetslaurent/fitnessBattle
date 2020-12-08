@@ -32,6 +32,8 @@ export class ProfileComponent implements OnInit {
   activitiesAvailable : Activities;
   categories: Categories;
 
+  rep: {[id:number]:number;} = {};
+
   constructor(private categoryService : CategoriesApiService,
               private activityService : ActivitiesApiService,
               private tokenService : TokenApiService,
@@ -76,38 +78,42 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  increaseRep(id: number) {
-    let value:number = Number((<HTMLSelectElement>document.getElementById('rep'+id)).value);
-    value+=1;
-    (<HTMLSelectElement>document.getElementById('rep'+id)).value = value.toString();
+  increaseRep(idAct: number) {
+    this.rep[idAct] +=1;
   }
 
-  decreaseRep(id: number) {
-    let value:number = Number((<HTMLSelectElement>document.getElementById('rep'+id)).value);
-    if(value>0)
-      value-=1;
-    (<HTMLSelectElement>document.getElementById('rep'+id)).value = value.toString();
+  decreaseRep(idAct: number) {
+    if(this.rep[idAct]>0)
+      this.rep[idAct] -=1;
+  }
+
+  getRep(idAct: number) : number {
+    if(!this.rep.hasOwnProperty(idAct))
+      this.rep[idAct] = 0;
+    return this.rep[idAct];
   }
 
   addTrainings() {
-    /*
+
     let trainingDate:TrainingDate = {
-      date : new Date()
-    }
+      date : new Intl.DateTimeFormat()
+  }
+
     let trainingDateWithId;
     this.trainingDateService.create(trainingDate).subscribe(trainingDate => trainingDateWithId = trainingDate);
-    */
 
-    this.activitiesAvailable.forEach(function(act) {
-      let value:number = Number((<HTMLSelectElement>document.getElementById('rep'+act.id)).value);
+
+    let userIdFromToken:number = this.userToken.id;
+    this.activitiesAvailable.forEach(act =>{
+      let value:number = this.rep[act.id];
       if (value>0) {
         let trainingToAdd:TrainingToAdd = {
           activityId : act.id,
           repetitions : value,
-          trainingDateId : 1,
-          userId : 1
+          trainingDateId : trainingDateWithId.id,
+          userId : userIdFromToken
         }
-        //this.trainingService.create(trainingToAdd).subscribe();
+        this.trainingService.create(trainingToAdd).subscribe();
         console.log(trainingToAdd);
       }
     });

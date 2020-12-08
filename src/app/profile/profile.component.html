@@ -40,9 +40,9 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let act of activitiesAvailable">
                   {{act.name}}
                   <span class="badge badge-info badge-pill">
-                    <button class="btn-success" (click)="increaseRep(act.id)">+</button>
-                    <input type="number" min="0" id="rep{{act.id}}" value="0">
                     <button class="btn-danger" (click)="decreaseRep(act.id)">-</button>
+                      <input type="number" min="0" value="{{getRep(act.id)}}" disabled>
+                    <button class="btn-success" (click)="increaseRep(act.id)">+</button>
                   </span>
                 </li>
               </ul>
