@@ -8,10 +8,8 @@ import {UserToken} from '../modele/token/types/userToken';
 import {UsersApiService} from '../modele/users/repositories/users-api.service';
 import {Router} from '@angular/router';
 import {Categories} from '../modele/categories/types/category';
-import {Training, Trainings} from '../modele/trainings/types/training';
 import {TrainingsApiService} from '../modele/trainings/repositories/trainings-api.service';
 import {TrainingDatesApiService} from '../modele/training-dates/repositories/training-dates-api.service';
-import {TrainingDate} from '../modele/training-dates/types/trainingDate';
 import {TrainingToAdd} from '../modele/trainings/types/trainingToAdd';
 
 @Component({
@@ -25,14 +23,15 @@ export class ProfileComponent implements OnInit {
   userToken:UserToken={name:"",email:"",role:""};
   points:number;
 
-  //Activities informations
-  activitiesByCategories: ActivitiesByCategories;
-
   //Add training
   activitiesAvailable : Activities;
   categories: Categories;
 
   rep: {[id:number]:number;} = {};
+  categorieNameSelected : string;
+
+  //Activities informations
+  activitiesByCategories: ActivitiesByCategories;
 
   constructor(private categoryService : CategoriesApiService,
               private activityService : ActivitiesApiService,
@@ -43,39 +42,41 @@ export class ProfileComponent implements OnInit {
               private router :Router) { }
 
   ngOnInit(): void {
+    //user informations
     this.getUser();
-    this.getActivitiesByCategories();
     this.getPoints();
+    //add training
     this.getCategories();
-    this.getActivitiesAvailable(1);
+    this.getActivitiesAvailable();
+    //activities informations
+    this.getActivitiesByCategories();
   }
 
-  private getUser(){
+  getUser(){
     this.tokenService.getUserFromToken(localStorage.getItem("token")).subscribe(userToken =>{this.userToken=userToken;});
   }
 
-  private getPoints(){
+  getPoints(){
     this.userService.getPointsById(localStorage.getItem("token")).subscribe(points =>{this.points=points;});
   }
 
-  private getActivitiesByCategories(){
-    this.categoryService.getActivitiesByCategory()
-      .subscribe(activitiesByCategories =>{ this.activitiesByCategories=activitiesByCategories;console.log(activitiesByCategories)});
-  }
-
-  private getActivitiesAvailable(id:number) {
-    this.activityService.getByCategoryId(id).subscribe(activities => this.activitiesAvailable=activities);
-  }
-
-  private getCategories() {
-    this.categoryService.query().subscribe(categories => this.categories = categories);
-  }
-
-  public selfDelete() {
+  selfDelete() {
     if(window.confirm("Are you sure to delete?")){
       this.userService.selfDelete(localStorage.getItem("token")).subscribe();
       this.router.navigate(["../../connection"]);
     }
+  }
+
+  getActivitiesAvailable() {
+    this.activityService.query().subscribe(activities => this.activitiesAvailable=activities);
+  }
+
+  getCategories() {
+    this.categoryService.query().subscribe(categories => this.categories = categories);
+  }
+
+  sortActivities(name: string) {
+    this.categorieNameSelected = name;
   }
 
   increaseRep(idAct: number) {
@@ -94,15 +95,6 @@ export class ProfileComponent implements OnInit {
   }
 
   addTrainings() {
-
-    let trainingDate:TrainingDate = {
-      date : new Intl.DateTimeFormat()
-  }
-
-    let trainingDateWithId;
-    this.trainingDateService.create(trainingDate).subscribe(trainingDate => trainingDateWithId = trainingDate);
-
-
     let userIdFromToken:number = this.userToken.id;
     this.activitiesAvailable.forEach(act =>{
       let value:number = this.rep[act.id];
@@ -110,12 +102,17 @@ export class ProfileComponent implements OnInit {
         let trainingToAdd:TrainingToAdd = {
           activityId : act.id,
           repetitions : value,
-          trainingDateId : trainingDateWithId.id,
+          trainingDateId : 1,
           userId : userIdFromToken
         }
         this.trainingService.create(trainingToAdd).subscribe();
         console.log(trainingToAdd);
       }
     });
+  }
+
+  getActivitiesByCategories(){
+    this.categoryService.getActivitiesByCategory()
+      .subscribe(activitiesByCategories =>{ this.activitiesByCategories=activitiesByCategories;console.log(activitiesByCategories)});
   }
 }

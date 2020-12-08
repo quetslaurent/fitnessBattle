@@ -30,6 +30,10 @@ export class ActivitiesApiService implements ActivityRepository{
     return this.http.delete(ActivitiesApiService.URL+"/"+id, this.requestOptions);
   }
 
+  query(): Observable<Activities> {
+    return this.http.get<Activities>(ActivitiesApiService.URL,this.requestOptions);
+  }
+
   getByCategoryId(categoryId: number): Observable<Activities> {
     return this.http.get<Activities>(ActivitiesApiService.URL+'/'+categoryId,this.requestOptions);
   }
