@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
   //PROFILE
   userToken:UserToken={name:"",email:"",role:""};
-  points:number;
+  points:number=0;
 
   //Add training
   activitiesAvailable : Activities;
