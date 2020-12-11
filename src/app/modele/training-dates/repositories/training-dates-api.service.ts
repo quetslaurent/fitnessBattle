@@ -14,24 +14,24 @@ export class TrainingDatesApiService implements TrainingDatesRepository{
 
   constructor(private http:HttpClient) { }
 
-  headerDict = {
+  static headerDict = {
     'Authorization': 'Bearer '+ localStorage.getItem("token")
   }
 
-  requestOptions = {
-    headers: new HttpHeaders(this.headerDict)
+  static readonly requestOptions= {
+    headers: new HttpHeaders(TrainingDatesApiService.headerDict)
   };
 
   create(trainingDate: TrainingDate): Observable<TrainingDate> {
-    return this.http.post<TrainingDate>(TrainingDatesApiService.URL,trainingDate, this.requestOptions);
+    return this.http.post<TrainingDate>(TrainingDatesApiService.URL,trainingDate, TrainingDatesApiService.requestOptions);
   }
 
   query(): Observable<TrainingDates> {
-    return this.http.get<TrainingDates>(TrainingDatesApiService.URL, this.requestOptions);
+    return this.http.get<TrainingDates>(TrainingDatesApiService.URL, TrainingDatesApiService.requestOptions);
   }
 
   createToday(): Observable<TrainingDate>  {
-    console.log(this.requestOptions);
-    return this.http.post<TrainingDate>(TrainingDatesApiService.URL+"/today", this.requestOptions);
+    console.log(TrainingDatesApiService.requestOptions);
+    return this.http.post<TrainingDate>(TrainingDatesApiService.URL+"/today", null,TrainingDatesApiService.requestOptions);
   }
 }
