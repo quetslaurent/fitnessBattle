@@ -151,3 +151,7 @@ h2{
 #unitSelectorCreate{
   width: 150px;
 }
+
+.category:hover{
+  cursor: pointer;
+}

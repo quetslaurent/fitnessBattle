@@ -5,7 +5,7 @@
       <table border="solid" class="fl-table">
         <thead>
         <tr>
-          <th *ngFor="let category of categories" (click)="getActivities(category.id)">{{category.name}}</th>
+          <th *ngFor="let category of categories" (click)="getActivities(category.id)" class="category">{{category.name}}</th>
         </tr>
         </thead>
       </table>
@@ -36,7 +36,7 @@
             </tr>
             <tr>
               <td colspan="6">
-                <form [formGroup]="activityUpdateForm" (ngSubmit)="updateActivity()" class="d-flex justify-content-around">
+                <form  [formGroup]="activityUpdateForm" (ngSubmit)="updateActivity()" class="d-flex justify-content-around">
                 <input class="col-sm-1 col-form-label" type="text" formControlName="name" [(ngModel)]="bufferActivity.name">
                 <input class="col-sm-1 col-form-label" type="number" min="0" formControlName="repetitions" [(ngModel)]="bufferActivity.repetitions">
                 <select class="col-sm-1 col-form-label" formControlName="categoryId" id="categorySelectorUpdate" (change)="changeCategoryIdUpdate() ">
@@ -45,7 +45,7 @@
                 <select class="col-sm-1 col-form-label" formControlName="unitId" id="unitSelectorUpdate" (change)="changeUnitIdUpdate()">
                   <option  *ngFor="let unit of units" value="{{unit.id}}" [selected]="bufferActivity.unitType == unit.type">{{unit.type}}</option>
                 </select>
-                <button type="submit" [disabled]="activityUpdateForm.invalid" class="btn btn-outline-success">Update</button>
+                <button type="submit" [disabled]="activityUpdateForm.invalid" class="btn btn-outline-success" *ngIf="isUpdateVisible">Update</button>
                  </form>
               </td>
             </tr>

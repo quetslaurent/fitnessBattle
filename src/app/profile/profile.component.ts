@@ -51,6 +51,7 @@ export class ProfileComponent implements OnInit {
     this.getActivitiesAvailable();
     //activities informations
     this.getActivitiesByCategories();
+
   }
 
   getUser(){

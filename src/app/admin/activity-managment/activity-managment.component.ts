@@ -42,7 +42,7 @@ export class ActivityManagmentComponent implements OnInit {
     unitId:['', Validators.required]
   });
 
-  bufferActivity:Activity = {name:"Activity name",repetitions:0,categoryName:"",unitType:""};
+  bufferActivity:Activity = {name:"",repetitions:0,categoryName:"",unitType:""};
 
   activityIdUpdate:number;
   isUpdateVisible:boolean=false;
@@ -138,6 +138,7 @@ export class ActivityManagmentComponent implements OnInit {
   }
 
   displayUpdateActivity(activity:Activity) {
+
     this.bufferActivity=activity;
     this.isUpdateVisible=true;
     this.activityIdUpdate=activity.id;

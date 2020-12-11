@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="trainingTable" *ngIf="isTrainingVisible">
-    <button (click)="hideTrainings()">Close</button>
+    <button (click)="hideTrainings()" class="btn btn-outline-primary">Close</button>
     <div class="table-wrapper">
       <table border="solid" class="fl-table">
         <thead>
@@ -50,7 +50,7 @@
           <td>{{training.repetitions}}</td>
           <td>{{training.activityName}}</td>
           <td>{{training.points.toFixed(2)}}</td>
-          <td><button (click)="removeTraining(training.id)">X</button></td>
+          <td><button (click)="removeTraining(training.id)" class="btn btn-outline-danger">❌</button></td>
         </tr>
         </tbody>
       </table>
