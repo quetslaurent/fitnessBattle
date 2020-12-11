@@ -31,6 +31,7 @@ export class ActivitiesApiService implements ActivityRepository{
   }
 
   query(): Observable<Activities> {
+    console.log(this.requestOptions.headers);
     return this.http.get<Activities>(ActivitiesApiService.URL,this.requestOptions);
   }
 

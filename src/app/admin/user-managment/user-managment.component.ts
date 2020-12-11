@@ -33,9 +33,11 @@ export class UserManagmentComponent implements OnInit {
   }
 
   removeUser(id:number) {
-    this.userService.delete(id)
-      .subscribe();
-    document.location.reload();
+    if(window.confirm("Are you sure to delete?")) {
+      this.userService.delete(id)
+        .subscribe();
+      document.location.reload();
+    }
   }
 
   //TRAININGS
@@ -46,8 +48,10 @@ export class UserManagmentComponent implements OnInit {
   }
 
   removeTraining(id: number) {
-    this.trainingService.delete(id).subscribe();
-    document.location.reload();
+    if(window.confirm("Are you sure to delete?")) {
+      this.trainingService.delete(id).subscribe();
+      document.location.reload();
+    }
   }
 
   displayTrainings(id) {

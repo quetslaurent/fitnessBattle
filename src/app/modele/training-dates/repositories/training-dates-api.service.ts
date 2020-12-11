@@ -31,6 +31,7 @@ export class TrainingDatesApiService implements TrainingDatesRepository{
   }
 
   createToday(): Observable<TrainingDate>  {
+    console.log(this.requestOptions);
     return this.http.post<TrainingDate>(TrainingDatesApiService.URL+"/today", this.requestOptions);
   }
 }
