@@ -12,6 +12,7 @@ import {TrainingsApiService} from '../modele/trainings/repositories/trainings-ap
 import {TrainingDatesApiService} from '../modele/training-dates/repositories/training-dates-api.service';
 import {TrainingToAdd} from '../modele/trainings/types/trainingToAdd';
 import {TrainingDate} from '../modele/training-dates/types/trainingDate';
+import {system} from '@amcharts/amcharts4/core';
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +31,8 @@ export class ProfileComponent implements OnInit {
 
   rep: {[id:number]:number;} = {};
   categorieNameSelected : string;
+
+  btnText:string="Add Training";
 
   //Activities informations
   activitiesByCategories: ActivitiesByCategories;
@@ -79,6 +82,7 @@ export class ProfileComponent implements OnInit {
 
   sortActivities(name: string) {
     this.categorieNameSelected = name;
+    this.btnText="Add Activity";
   }
 
   increaseRep(idAct: number) {
@@ -100,6 +104,8 @@ export class ProfileComponent implements OnInit {
     this.trainingDateService.createToday().subscribe(trainingDate => {
       console.log(trainingDate);this.createTraining(trainingDate.id);
     });
+      this.btnText="Well done !";
+    this.categorieNameSelected="";
   }
 
   createTraining(idDate:number) {

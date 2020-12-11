@@ -86,8 +86,10 @@ export class ActivityManagmentComponent implements OnInit {
   }
 
   removeActivity(id: number) {
-    this.activityService.delete(id).subscribe();
-    document.location.reload();
+    if(window.confirm("Are you sure to delete?")) {
+      this.activityService.delete(id).subscribe();
+      document.location.reload();
+    }
   }
 
   addActivity() {
