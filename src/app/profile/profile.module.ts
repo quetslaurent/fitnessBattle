@@ -12,4 +12,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ]
 })
-export class ProfileModule { }
+export class ProfileModule {
+  //Classe comprenant l'ajout d'entrainement, les infos sur les activités, le calcul d'IMC (super important !!!!), l'affichage du profil
+}

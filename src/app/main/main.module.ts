@@ -22,5 +22,7 @@ import {ApplicationModule} from '../application/application.module';
   ]
 })
 export class MainModule {
-
+  /*
+  Classe mère comprenant tout les onglets du site
+   */
 }

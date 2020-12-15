@@ -8,6 +8,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class IMCComponent implements OnInit {
 
+  //CALCUL DE L IMC !!!!!!
+
+  //formulaire de claucl d'imc
   formIMC:FormGroup = this.fb.group({
     wheight:['',Validators.required],
     height:['',Validators.required]
@@ -23,6 +26,7 @@ export class IMCComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //méthode de calcul scientifque de l'IMC en fonction de la masse moléculaire des muscles
   processIMC() {
 
     this.IMC = Math.round(this.formIMC.value.wheight / (Math.pow(this.formIMC.value.height / 100, 2)) * 100) / 100;

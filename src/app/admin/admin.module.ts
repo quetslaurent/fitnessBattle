@@ -15,4 +15,8 @@ import { ActivityManagmentComponent } from './activity-managment/activity-managm
         ReactiveFormsModule
     ]
 })
-export class AdminModule { }
+export class AdminModule {
+  /*
+  Cette classe permet la gestion des activités, des users et des trainings. Elle est réservée aux utilisateurs ayant le rôle administrateur
+   */
+}

@@ -11,7 +11,15 @@ import {TrainingToAdd} from '../types/trainingToAdd';
 })
 export class TrainingsApiService implements TrainingsRepository{
 
+  /*
+Cette classe permet d'envoyer des requêtes à l'api
+ */
+
+
   static readonly URL:string = environment.serverAddress+'api/training';
+
+  //permet d'ajouter le token de l'utisateur dans la requête afin que la requête soit autorisée
+
 
   headerDict = {
     'Authorization': 'Bearer '+ localStorage.getItem("token")

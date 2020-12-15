@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
+  /*
+  Cette classe permet d'afficher une page "404 Not found" si l'utilisateur entre une adresse invalide
+   */
+
   constructor() { }
 
   ngOnInit(): void {

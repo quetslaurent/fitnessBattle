@@ -13,11 +13,17 @@ import {UsersApiService} from '../modele/users/repositories/users-api.service';
 
 export class ConnectionComponent implements OnInit {
 
+  /*
+  Cette classe permet d'afficher la page de connection.
+   */
+
+  //formulaire de connection
   formLogIn:FormGroup = this.fb.group({
     name:['',[Validators.required]],
     password:['',Validators.required]
   });
 
+  //formulaire d'inscription
   formSignIn:FormGroup = this.fb.group({
     name:['',Validators.required],
     email:['',[Validators.required,Validators.email]],
@@ -39,6 +45,7 @@ export class ConnectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //connecte l'utilisateur si il existe dans la BD, lui donne un token pour ses requêtes et le redirige vers son profil
   logIn():void {
     this.authService.login(this.formLogIn.value).subscribe(
       data => {
@@ -50,6 +57,7 @@ export class ConnectionComponent implements OnInit {
       });
   }
 
+  //inscris l'utilisateur dans la DB et affiche le formulaire de connection
   signIn() {
       this.userService.create(this.formSignIn.value).subscribe(
         data => {

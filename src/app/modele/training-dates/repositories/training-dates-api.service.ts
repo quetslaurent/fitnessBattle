@@ -10,11 +10,19 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class TrainingDatesApiService implements TrainingDatesRepository{
 
+  /*
+Cette classe permet d'envoyer des requêtes à l'api
+ */
+
+
   static readonly URL:string = environment.serverAddress+'api/training-dates';
 
   constructor(private http:HttpClient) { }
 
-  static headerDict = {
+  //permet d'ajouter le token de l'utisateur dans la requête afin que la requête soit autorisée
+
+
+  static readonly headerDict = {
     'Authorization': 'Bearer '+ localStorage.getItem("token")
   }
 
@@ -31,7 +39,6 @@ export class TrainingDatesApiService implements TrainingDatesRepository{
   }
 
   createToday(): Observable<TrainingDate>  {
-    console.log(TrainingDatesApiService.requestOptions);
     return this.http.post<TrainingDate>(TrainingDatesApiService.URL+"/today", null,TrainingDatesApiService.requestOptions);
   }
 }

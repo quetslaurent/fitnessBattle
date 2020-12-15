@@ -10,6 +10,10 @@ import {ActivityToManage} from '../types/activityToManage';
 })
 export class ActivitiesApiService implements ActivityRepository{
 
+  /*
+  Cette classe permet d'envoyer des requêtes à l'api
+   */
+
   static readonly URL:string = environment.serverAddress+'api/activity';
 
   headerDict = {

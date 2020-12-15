@@ -10,6 +10,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AuthApiService implements AuthRepository{
 
+  /*
+Cette classe permet d'envoyer des requêtes à l'api
+ */
+
+
   static readonly URL:string = environment.serverAddress+'api/auth';
 
   constructor(private http:HttpClient) { }

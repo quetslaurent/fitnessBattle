@@ -15,6 +15,10 @@ import {UnitApiService} from '../../modele/units/repositories/unit-api.service';
 })
 export class ActivityManagmentComponent implements OnInit {
 
+  /*
+  Cette classe concerne la gestion des activités et des catégories+unités
+   */
+
   constructor(private activityService : ActivitiesApiService,
               private categoryService : CategoriesApiService,
               private unitService : UnitApiService,
@@ -29,12 +33,14 @@ export class ActivityManagmentComponent implements OnInit {
   //activity list
   activities:Activities;
 
+  //formulaire d'ajout d'une activité
   activityForm: FormGroup = this.fb.group({
     name:['', Validators.required],
     repetitions:['', Validators.required],
     unitId:['', Validators.required]
   });
 
+  //formulaire de misa à jour d'une activité
   activityUpdateForm: FormGroup = this.fb.group({
     name:['', Validators.required],
     repetitions:['', Validators.required],
@@ -42,6 +48,7 @@ export class ActivityManagmentComponent implements OnInit {
     unitId:['', Validators.required]
   });
 
+  //activité tampon permettant de remplir automatiquement les champs de la maj d'activité
   bufferActivity:Activity = {name:"",repetitions:0,categoryName:"",unitType:""};
 
   activityIdUpdate:number;
@@ -52,6 +59,7 @@ export class ActivityManagmentComponent implements OnInit {
 
   //ADD category
 
+  //formulaire d'ajout d'activité
   categoryForm:FormGroup = this.fb.group({
     name:['', Validators.required]
   });
@@ -63,12 +71,14 @@ export class ActivityManagmentComponent implements OnInit {
   units : Units;
   unitIdSelected:number=1;
 
+  //formulaire d'ajout d'unité
   unitForm: FormGroup= this.fb.group({
     type:['', Validators.required]
   });
 
   //CATEGORIES
 
+  //récupère la liste des catégories présentes dans la BD
   getCategories() {
     this.categoryService.query().subscribe(categories => this.categories = categories);
   }
@@ -80,6 +90,7 @@ export class ActivityManagmentComponent implements OnInit {
 
   //ACTIVITIES
 
+  //récupère la liste des activités présentes dans la BD
   getActivities(id : number) {
     this.categoryIdSelected = id;
     this.activityService.getByCategoryId(id).subscribe(activities => this.activities = activities);
@@ -105,10 +116,13 @@ export class ActivityManagmentComponent implements OnInit {
 
   //UNITS
 
+
+  //récupère la liste des unités présentes dans la BD
   getUnits() {
     this.unitService.query().subscribe(units => this.units = units);
   }
 
+  //récupère l'id de l'unité séléctionnée dans la liste déroulante
   changeUnitIdCreate() {
     let value = (<HTMLSelectElement>document.getElementById('unitSelectorCreate')).value;
     this.unitIdSelected=Number(value);
@@ -129,18 +143,20 @@ export class ActivityManagmentComponent implements OnInit {
     this.activityService.update(this.activityIdUpdate,act).subscribe();
   }
 
+  //récupère l'id de l'unité séléctionnée dans la liste déroulante
   changeUnitIdUpdate() {
     let value = (<HTMLSelectElement>document.getElementById('unitSelectorUpdate')).value;
     this.unitIdSelected=Number(value);
   }
 
+  //récupère l'id de la catégorie séléctionnée dans la liste déroulante
   changeCategoryIdUpdate() {
     let value = (<HTMLSelectElement>document.getElementById('categorySelectorUpdate')).value;
     this.categoryIdSelected=Number(value);
   }
 
+  //rempli automatiquement le formulaire de maj d'une activité
   displayUpdateActivity(activity:Activity) {
-
     this.bufferActivity=activity;
     this.isUpdateVisible=true;
     this.activityIdUpdate=activity.id;

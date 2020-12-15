@@ -10,9 +10,17 @@ import {Observable} from 'rxjs';
 })
 export class UnitApiService implements UnitRepository{
 
+  /*
+Cette classe permet d'envoyer des requêtes à l'api
+ */
+
+
   constructor(private http:HttpClient) { }
 
   static readonly URL:string = environment.serverAddress+'api/units';
+
+  //permet d'ajouter le token de l'utisateur dans la requête afin que la requête soit autorisée
+
 
   headerDict = {
     'Authorization': 'Bearer '+ localStorage.getItem("token")

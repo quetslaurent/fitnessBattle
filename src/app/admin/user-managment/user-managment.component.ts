@@ -11,6 +11,9 @@ import {TrainingsApiService} from '../../modele/trainings/repositories/trainings
 })
 export class UserManagmentComponent implements OnInit {
 
+  /*
+  Cette classe concerne le traitement des utilisateurs et l'affichage/supression de leurs entrainements
+   */
   constructor(private userService:UsersApiService, private trainingService:TrainingsApiService) { }
 
   //users list
@@ -27,6 +30,7 @@ export class UserManagmentComponent implements OnInit {
 
   //USER
 
+  //récupère les utilisateurs de la BD
   private getUsers() {
     this.userService.query()
       .subscribe(users =>this.users=users);
@@ -42,6 +46,7 @@ export class UserManagmentComponent implements OnInit {
 
   //TRAININGS
 
+  //récupère les trainings de la BD
   private getTrainings(id) {
     this.trainingService.getByUserId(id)
       .subscribe(trainings => this.trainings = trainings);
@@ -54,12 +59,14 @@ export class UserManagmentComponent implements OnInit {
     }
   }
 
+  //cache les utilisateurs pour afficher les trainings d'un utilisateur donné
   displayTrainings(id) {
     this.getTrainings(id);
     this.isTrainingVisible = true;
     this.isUserVisible = false;
   }
 
+  //cache les trainings pour réafficher les utilisateurs
   hideTrainings() {
     this.isTrainingVisible= false;
     this.isUserVisible = true;

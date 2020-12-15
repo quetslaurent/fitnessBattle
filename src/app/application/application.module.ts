@@ -11,4 +11,8 @@ import { ApplicationRoutingModule } from './application-routing.module';
     ApplicationRoutingModule
   ]
 })
-export class ApplicationModule { }
+export class ApplicationModule {
+  /*
+  Cette classe concerne la redirection vers la page playstore de l'application mobile Fitness Battle
+   */
+}

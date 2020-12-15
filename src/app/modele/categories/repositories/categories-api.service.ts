@@ -11,7 +11,14 @@ import {ActivitiesByCategories} from '../types/ActivitiesByCategory';
 })
 export class CategoriesApiService implements CategoryRepository{
 
+  /*
+Cette classe permet d'envoyer des requêtes à l'api
+ */
+
+
   static readonly URL:string = environment.serverAddress+'api/categories';
+
+  //permet d'ajouter le token de l'utisateur dans la requête afin que la requête soit autorisée
 
   headerDict = {
     'Authorization': 'Bearer '+ localStorage.getItem("token")

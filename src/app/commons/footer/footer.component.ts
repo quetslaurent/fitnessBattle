@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  /*
+  Cette classe concerne l'affichage d'un fond de page comprenant le copyright du site
+   */
+
   constructor() { }
 
   ngOnInit(): void {

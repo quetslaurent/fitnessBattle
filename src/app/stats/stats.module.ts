@@ -11,4 +11,6 @@ import { StatsRoutingModule } from './stats-routing.module';
     StatsRoutingModule
   ]
 })
-export class StatsModule { }
+export class StatsModule {
+  //Classe permettant d'afficher le graphique amcharts des entrainements et la liste des entrainements de l'utilisateur
+}

@@ -10,7 +10,16 @@ import {UserToken} from '../types/userToken';
 })
 export class TokenApiService implements TokenRepository{
 
+  /*
+Cette classe permet d'envoyer des requêtes à l'api
+ */
+
+
   static readonly URL:string = environment.serverAddress+'api/token';
+
+  //permet d'ajouter le token de l'utisateur dans la requête afin que la requête soit autorisée
+
+
 
   headerDict = {
     'Authorization': 'Bearer '+ localStorage.getItem("token")
